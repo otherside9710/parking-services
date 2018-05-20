@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="MayoryBalances" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="54ab1641-e3e4-4d2d-b360-30eaa86b49a5">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="BodegaDataAdapter.xml"/>
+	<parameter name="cFd._empresa" class="java.lang.String"/>
+	<parameter name="cFd._user" class="java.lang.String"/>
+	<queryString language="json">
+		<![CDATA[]]>
+	</queryString>
+	<field name="bodeCodigo" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="bodeCodigo"/>
+		<fieldDescription><![CDATA[bodeCodigo]]></fieldDescription>
+	</field>
+	<field name="bodeTelefonos" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="bodeTelefonos"/>
+		<fieldDescription><![CDATA[bodeTelefonos]]></fieldDescription>
+	</field>
+	<field name="bodeDescripcion" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="bodeDescripcion"/>
+		<fieldDescription><![CDATA[bodeDescripcion]]></fieldDescription>
+	</field>
+	<field name="bodeDireccion" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="bodeDireccion"/>
+		<fieldDescription><![CDATA[bodeDireccion]]></fieldDescription>
+	</field>
+	<field name="Ciudad" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="Ciudad"/>
+		<fieldDescription><![CDATA[Ciudad]]></fieldDescription>
+	</field>
+	<field name="Departamento" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="Departamento"/>
+		<fieldDescription><![CDATA[Departamento]]></fieldDescription>
+	</field>
+	<field name="bode_estado" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="bode_estado"/>
+		<fieldDescription><![CDATA[bode_estado]]></fieldDescription>
+	</field>
+	<field name="Pais" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="Pais"/>
+		<fieldDescription><![CDATA[Pais]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="66" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="43" width="570" height="13" uuid="27931242-25de-4f67-ac3a-da98551cc874">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineStyle="Solid" lineColor="#E4EDF5"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="43" width="52" height="13" backcolor="#FFFFFF" uuid="97e1b0d7-b2a9-4990-ab5e-ec54a3e20982">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8"/>
+					<paragraph leftIndent="10"/>
+				</textElement>
+				<text><![CDATA[Codigo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="52" y="43" width="90" height="13" uuid="c9f268fb-2f7d-4bfe-9d62-c8ed5d301481">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8"/>
+					<paragraph leftIndent="0"/>
+				</textElement>
+				<text><![CDATA[Descripcion]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="180" y="0" width="200" height="24" uuid="35fd7acc-352e-452b-a42f-d2a7b4baca96">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{cFd._empresa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="442" y="2" width="50" height="13" uuid="a2b27d3e-f9b2-46d1-92d6-46a2d4f0db82">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left">
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="485" y="2" width="34" height="13" uuid="ec3ac30a-ba67-47f7-91a1-ae450f801a47">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left">
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" de " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="194" y="24" width="172" height="13" uuid="aea6122f-b7e3-4fb9-a3bc-a48edf5e8645"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[BODEGAS]]></text>
+			</staticText>
+			<textField pattern="HH:mm">
+				<reportElement x="40" y="18" width="140" height="13" uuid="81415ae8-fbb9-4603-83bc-ee095c55114e">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="2" width="40" height="13" uuid="2b5f8168-403c-4f9d-8cb2-4c6bc8e83562">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<text><![CDATA[Fecha:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="18" width="40" height="13" uuid="69fd6485-372b-438e-9869-bd3e8d86b61d">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<text><![CDATA[Hora:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="440" y="22" width="114" height="13" uuid="ea46c0e9-52ea-492a-bf66-248af469627c"/>
+				<textElement textAlignment="Left">
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{cFd._user}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="500" y="43" width="70" height="13" uuid="7dd8fa3e-6ad1-49e0-972a-a989051bcdf9">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<text><![CDATA[Estado]]></text>
+			</staticText>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="40" y="2" width="140" height="13" uuid="0224a7d4-7231-4504-932d-13c742d51f08"/>
+				<textElement>
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="142" y="43" width="88" height="13" backcolor="#FFFFFF" uuid="df94383a-ad74-4268-8622-e11217261a8d">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8"/>
+					<paragraph leftIndent="10"/>
+				</textElement>
+				<text><![CDATA[Dirección]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="230" y="43" width="60" height="13" backcolor="#FFFFFF" uuid="620b70d5-3931-4805-ab85-ca837d57ed00">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8"/>
+					<paragraph leftIndent="10"/>
+				</textElement>
+				<text><![CDATA[Telefono]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="290" y="43" width="70" height="13" backcolor="#FFFFFF" uuid="d37eadb3-a02e-4e42-8914-cf2d8f92753a">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8"/>
+					<paragraph leftIndent="10"/>
+				</textElement>
+				<text><![CDATA[Pais]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="360" y="43" width="70" height="13" backcolor="#FFFFFF" uuid="43da5505-e67f-47e4-b6ac-655910df3202">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8"/>
+					<paragraph leftIndent="10"/>
+				</textElement>
+				<text><![CDATA[Departamento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="430" y="43" width="70" height="13" backcolor="#FFFFFF" uuid="29c93a94-27ec-4698-82d2-a005d8894dc4">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8"/>
+					<paragraph leftIndent="10"/>
+				</textElement>
+				<text><![CDATA[Ciudad]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="15">
+			<textField>
+				<reportElement x="500" y="0" width="70" height="13" uuid="f37bb297-4308-4e7b-afab-5ba42d48b985">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bode_estado}.trim().compareTo("A") ==0  ? "Activo" : "Inactivo"]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="13" width="570" height="2" uuid="b8842ed5-fd49-44f1-90a5-4222483e59e6">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#A6A6A6"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="0" y="0" width="52" height="12" uuid="f46eb8f4-24db-4681-9b6e-592fda142454"/>
+				<textElement>
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bodeCodigo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="52" y="0" width="90" height="12" uuid="f0a3614f-157e-4fd7-a15c-b7f8efc40c20"/>
+				<textElement>
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bodeDescripcion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="142" y="0" width="88" height="12" uuid="a801bd76-a7e6-44a2-8da8-29a0711d2670"/>
+				<textElement>
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bodeDireccion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="230" y="0" width="60" height="12" uuid="8341ac29-5d8f-411a-92fc-dacf108311f5"/>
+				<textElement>
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bodeTelefonos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="290" y="0" width="70" height="12" uuid="be94b767-46a4-4c62-96e0-a2c17944700e"/>
+				<textElement>
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Pais}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="360" y="0" width="70" height="12" uuid="7f33eb26-46c1-4e51-8fef-580e67ecc99e"/>
+				<textElement>
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Departamento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="430" y="0" width="70" height="12" uuid="4fc0b917-66c4-4612-bbda-4e827a921aa7"/>
+				<textElement>
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Ciudad}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
