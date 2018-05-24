@@ -6,7 +6,7 @@
 package com.parking.parkingservices.model.entity;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Otherside
+ * @author MyAsesor
  */
 @Entity
 @Table(name = "tp_vehiculo")
@@ -44,7 +44,7 @@ public class TpVehiculo implements Serializable {
     @Column(name = "tpv_descripcion")
     private String tpvDescripcion;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tpvCodigo")
-    private Collection<Vehiculo> vehiculoCollection;
+    private List<Vehiculo> vehiculoList;
 
     public TpVehiculo() {
     }
@@ -75,12 +75,12 @@ public class TpVehiculo implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Vehiculo> getVehiculoCollection() {
-        return vehiculoCollection;
+    public List<Vehiculo> getVehiculoList() {
+        return vehiculoList;
     }
 
-    public void setVehiculoCollection(Collection<Vehiculo> vehiculoCollection) {
-        this.vehiculoCollection = vehiculoCollection;
+    public void setVehiculoList(List<Vehiculo> vehiculoList) {
+        this.vehiculoList = vehiculoList;
     }
 
     @Override

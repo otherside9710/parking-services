@@ -6,7 +6,7 @@
 package com.parking.parkingservices.model.entity;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Otherside
+ * @author MyAsesor
  */
 @Entity
 @Table(name = "roles")
@@ -42,8 +42,8 @@ public class Roles implements Serializable {
     private Integer rolCodigo;
     @Column(name = "rol_descripcion")
     private String rolDescripcion;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "roles")
-    private Collection<Usuarios> usuariosCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "rolCodigo")
+    private List<Usuarios> usuariosList;
 
     public Roles() {
     }
@@ -69,12 +69,12 @@ public class Roles implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Usuarios> getUsuariosCollection() {
-        return usuariosCollection;
+    public List<Usuarios> getUsuariosList() {
+        return usuariosList;
     }
 
-    public void setUsuariosCollection(Collection<Usuarios> usuariosCollection) {
-        this.usuariosCollection = usuariosCollection;
+    public void setUsuariosList(List<Usuarios> usuariosList) {
+        this.usuariosList = usuariosList;
     }
 
     @Override

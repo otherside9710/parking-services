@@ -6,7 +6,8 @@
 package com.parking.parkingservices.model.entity;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -20,12 +21,14 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Otherside
+ * @author MyAsesor
  */
 @Entity
 @Table(name = "parqueo")
@@ -33,7 +36,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Parqueo.findAll", query = "SELECT p FROM Parqueo p")
     , @NamedQuery(name = "Parqueo.findByParCodigo", query = "SELECT p FROM Parqueo p WHERE p.parCodigo = :parCodigo")
-    , @NamedQuery(name = "Parqueo.findByParDuracion", query = "SELECT p FROM Parqueo p WHERE p.parDuracion = :parDuracion")})
+    , @NamedQuery(name = "Parqueo.findByParHinicio", query = "SELECT p FROM Parqueo p WHERE p.parHinicio = :parHinicio")
+    , @NamedQuery(name = "Parqueo.findByParHfinal", query = "SELECT p FROM Parqueo p WHERE p.parHfinal = :parHfinal")})
 public class Parqueo implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -42,15 +46,28 @@ public class Parqueo implements Serializable {
     @Basic(optional = false)
     @Column(name = "par_codigo")
     private Integer parCodigo;
-    @Column(name = "par_duracion")
-    private Integer parDuracion;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "parqueo")
-    private Collection<Zonas> zonasCollection;
-    @JoinColumn(name = "tari_codigo", referencedColumnName = "tari_codigo")
-    @ManyToOne(optional = false)
-    private Tarifas tariCodigo;
+    @Column(name = "par_hinicio")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date parHinicio;
+    @Column(name = "par_hfinal")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date parHfinal;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "parCodigo")
-    private Collection<Vehiculo> vehiculoCollection;
+    private List<Zonas> zonasList;
+    @JoinColumn(name = "tari_codigo", referencedColumnName = "tari_codigo")
+    @ManyToOne
+    private Tarifas tariCodigo;
+    @JoinColumn(name = "usua_codigo", referencedColumnName = "usua_codigo")
+    @ManyToOne
+    private Usuarios usuaCodigo;
+    @JoinColumn(name = "veh_codigo", referencedColumnName = "veh_codigo")
+    @ManyToOne
+    private Vehiculo vehCodigo;
+    @JoinColumn(name = "zona_codigo", referencedColumnName = "zona_codigo")
+    @ManyToOne
+    private Zonas zonaCodigo;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "parCodigo")
+    private List<Vehiculo> vehiculoList;
 
     public Parqueo() {
     }
@@ -67,21 +84,29 @@ public class Parqueo implements Serializable {
         this.parCodigo = parCodigo;
     }
 
-    public Integer getParDuracion() {
-        return parDuracion;
+    public Date getParHinicio() {
+        return parHinicio;
     }
 
-    public void setParDuracion(Integer parDuracion) {
-        this.parDuracion = parDuracion;
+    public void setParHinicio(Date parHinicio) {
+        this.parHinicio = parHinicio;
+    }
+
+    public Date getParHfinal() {
+        return parHfinal;
+    }
+
+    public void setParHfinal(Date parHfinal) {
+        this.parHfinal = parHfinal;
     }
 
     @XmlTransient
-    public Collection<Zonas> getZonasCollection() {
-        return zonasCollection;
+    public List<Zonas> getZonasList() {
+        return zonasList;
     }
 
-    public void setZonasCollection(Collection<Zonas> zonasCollection) {
-        this.zonasCollection = zonasCollection;
+    public void setZonasList(List<Zonas> zonasList) {
+        this.zonasList = zonasList;
     }
 
     public Tarifas getTariCodigo() {
@@ -92,13 +117,37 @@ public class Parqueo implements Serializable {
         this.tariCodigo = tariCodigo;
     }
 
-    @XmlTransient
-    public Collection<Vehiculo> getVehiculoCollection() {
-        return vehiculoCollection;
+    public Usuarios getUsuaCodigo() {
+        return usuaCodigo;
     }
 
-    public void setVehiculoCollection(Collection<Vehiculo> vehiculoCollection) {
-        this.vehiculoCollection = vehiculoCollection;
+    public void setUsuaCodigo(Usuarios usuaCodigo) {
+        this.usuaCodigo = usuaCodigo;
+    }
+
+    public Vehiculo getVehCodigo() {
+        return vehCodigo;
+    }
+
+    public void setVehCodigo(Vehiculo vehCodigo) {
+        this.vehCodigo = vehCodigo;
+    }
+
+    public Zonas getZonaCodigo() {
+        return zonaCodigo;
+    }
+
+    public void setZonaCodigo(Zonas zonaCodigo) {
+        this.zonaCodigo = zonaCodigo;
+    }
+
+    @XmlTransient
+    public List<Vehiculo> getVehiculoList() {
+        return vehiculoList;
+    }
+
+    public void setVehiculoList(List<Vehiculo> vehiculoList) {
+        this.vehiculoList = vehiculoList;
     }
 
     @Override

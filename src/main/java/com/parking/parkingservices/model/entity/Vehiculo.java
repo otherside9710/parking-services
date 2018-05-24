@@ -6,7 +6,7 @@
 package com.parking.parkingservices.model.entity;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Otherside
+ * @author MyAsesor
  */
 @Entity
 @Table(name = "vehiculo")
@@ -48,6 +48,11 @@ public class Vehiculo implements Serializable {
     private String vehPlaca;
     @Column(name = "veh_estado")
     private String vehEstado;
+    @OneToMany(mappedBy = "vehCodigo")
+    private List<Parqueo> parqueoList;
+    @JoinColumn(name = "zona_codigo", referencedColumnName = "zona_codigo")
+    @ManyToOne
+    private Zonas zonaCodigo;
     @JoinColumn(name = "par_codigo", referencedColumnName = "par_codigo")
     @ManyToOne(optional = false)
     private Parqueo parCodigo;
@@ -55,7 +60,7 @@ public class Vehiculo implements Serializable {
     @ManyToOne(optional = false)
     private TpVehiculo tpvCodigo;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "vehCodigo")
-    private Collection<Clientes> clientesCollection;
+    private List<Clientes> clientesList;
 
     public Vehiculo() {
     }
@@ -93,6 +98,23 @@ public class Vehiculo implements Serializable {
         this.vehEstado = vehEstado;
     }
 
+    @XmlTransient
+    public List<Parqueo> getParqueoList() {
+        return parqueoList;
+    }
+
+    public void setParqueoList(List<Parqueo> parqueoList) {
+        this.parqueoList = parqueoList;
+    }
+
+    public Zonas getZonaCodigo() {
+        return zonaCodigo;
+    }
+
+    public void setZonaCodigo(Zonas zonaCodigo) {
+        this.zonaCodigo = zonaCodigo;
+    }
+
     public Parqueo getParCodigo() {
         return parCodigo;
     }
@@ -110,12 +132,12 @@ public class Vehiculo implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Clientes> getClientesCollection() {
-        return clientesCollection;
+    public List<Clientes> getClientesList() {
+        return clientesList;
     }
 
-    public void setClientesCollection(Collection<Clientes> clientesCollection) {
-        this.clientesCollection = clientesCollection;
+    public void setClientesList(List<Clientes> clientesList) {
+        this.clientesList = clientesList;
     }
 
     @Override

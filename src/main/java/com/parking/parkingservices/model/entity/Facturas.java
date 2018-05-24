@@ -6,7 +6,7 @@
 package com.parking.parkingservices.model.entity;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Otherside
+ * @author MyAsesor
  */
 @Entity
 @Table(name = "facturas")
@@ -31,7 +31,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Facturas.findAll", query = "SELECT f FROM Facturas f")
     , @NamedQuery(name = "Facturas.findByFactCodigo", query = "SELECT f FROM Facturas f WHERE f.factCodigo = :factCodigo")
-    , @NamedQuery(name = "Facturas.findByFactEstado", query = "SELECT f FROM Facturas f WHERE f.factEstado = :factEstado")})
+    , @NamedQuery(name = "Facturas.findByFactEstado", query = "SELECT f FROM Facturas f WHERE f.factEstado = :factEstado")
+    , @NamedQuery(name = "Facturas.findByFactDescripcion", query = "SELECT f FROM Facturas f WHERE f.factDescripcion = :factDescripcion")})
 public class Facturas implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -42,10 +43,12 @@ public class Facturas implements Serializable {
     private Integer factCodigo;
     @Column(name = "fact_estado")
     private String factEstado;
+    @Column(name = "fact_descripcion")
+    private String factDescripcion;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "factCodigo")
-    private Collection<Clientes> clientesCollection;
+    private List<Clientes> clientesList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "factCodigo")
-    private Collection<Usuarios> usuariosCollection;
+    private List<Usuarios> usuariosList;
 
     public Facturas() {
     }
@@ -70,22 +73,30 @@ public class Facturas implements Serializable {
         this.factEstado = factEstado;
     }
 
+    public String getFactDescripcion() {
+        return factDescripcion;
+    }
+
+    public void setFactDescripcion(String factDescripcion) {
+        this.factDescripcion = factDescripcion;
+    }
+
     @XmlTransient
-    public Collection<Clientes> getClientesCollection() {
-        return clientesCollection;
+    public List<Clientes> getClientesList() {
+        return clientesList;
     }
 
-    public void setClientesCollection(Collection<Clientes> clientesCollection) {
-        this.clientesCollection = clientesCollection;
+    public void setClientesList(List<Clientes> clientesList) {
+        this.clientesList = clientesList;
     }
 
     @XmlTransient
-    public Collection<Usuarios> getUsuariosCollection() {
-        return usuariosCollection;
+    public List<Usuarios> getUsuariosList() {
+        return usuariosList;
     }
 
-    public void setUsuariosCollection(Collection<Usuarios> usuariosCollection) {
-        this.usuariosCollection = usuariosCollection;
+    public void setUsuariosList(List<Usuarios> usuariosList) {
+        this.usuariosList = usuariosList;
     }
 
     @Override

@@ -6,36 +6,44 @@
 package com.parking.parkingservices.model.entity;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.Basic;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Otherside
+ * @author MyAsesor
  */
 @Entity
 @Table(name = "usuarios")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Usuarios.findAll", query = "SELECT u FROM Usuarios u")
-    , @NamedQuery(name = "Usuarios.findByUsuaCodigo", query = "SELECT u FROM Usuarios u WHERE u.usuariosPK.usuaCodigo = :usuaCodigo")
+    , @NamedQuery(name = "Usuarios.findByUsuaCodigo", query = "SELECT u FROM Usuarios u WHERE u.usuaCodigo = :usuaCodigo")
     , @NamedQuery(name = "Usuarios.findByUsuaNombres", query = "SELECT u FROM Usuarios u WHERE u.usuaNombres = :usuaNombres")
     , @NamedQuery(name = "Usuarios.findByUsuaApellidos", query = "SELECT u FROM Usuarios u WHERE u.usuaApellidos = :usuaApellidos")
     , @NamedQuery(name = "Usuarios.findByUsuaCedula", query = "SELECT u FROM Usuarios u WHERE u.usuaCedula = :usuaCedula")
-    , @NamedQuery(name = "Usuarios.findByUsuaEstado", query = "SELECT u FROM Usuarios u WHERE u.usuaEstado = :usuaEstado")
-    , @NamedQuery(name = "Usuarios.findByRolCodigo", query = "SELECT u FROM Usuarios u WHERE u.usuariosPK.rolCodigo = :rolCodigo")})
+    , @NamedQuery(name = "Usuarios.findByUsuaEstado", query = "SELECT u FROM Usuarios u WHERE u.usuaEstado = :usuaEstado")})
 public class Usuarios implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @EmbeddedId
-    protected UsuariosPK usuariosPK;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "usua_codigo")
+    private Integer usuaCodigo;
     @Column(name = "usua_nombres")
     private String usuaNombres;
     @Column(name = "usua_apellidos")
@@ -44,12 +52,14 @@ public class Usuarios implements Serializable {
     private String usuaCedula;
     @Column(name = "usua_estado")
     private String usuaEstado;
+    @OneToMany(mappedBy = "usuaCodigo")
+    private List<Parqueo> parqueoList;
     @JoinColumn(name = "fact_codigo", referencedColumnName = "fact_codigo")
     @ManyToOne(optional = false)
     private Facturas factCodigo;
-    @JoinColumn(name = "rol_codigo", referencedColumnName = "rol_codigo", insertable = false, updatable = false)
+    @JoinColumn(name = "rol_codigo", referencedColumnName = "rol_codigo")
     @ManyToOne(optional = false)
-    private Roles roles;
+    private Roles rolCodigo;
     @JoinColumn(name = "ticket_codigo", referencedColumnName = "ticket_codigo")
     @ManyToOne(optional = false)
     private Ticket ticketCodigo;
@@ -57,20 +67,16 @@ public class Usuarios implements Serializable {
     public Usuarios() {
     }
 
-    public Usuarios(UsuariosPK usuariosPK) {
-        this.usuariosPK = usuariosPK;
+    public Usuarios(Integer usuaCodigo) {
+        this.usuaCodigo = usuaCodigo;
     }
 
-    public Usuarios(int usuaCodigo, int rolCodigo) {
-        this.usuariosPK = new UsuariosPK(usuaCodigo, rolCodigo);
+    public Integer getUsuaCodigo() {
+        return usuaCodigo;
     }
 
-    public UsuariosPK getUsuariosPK() {
-        return usuariosPK;
-    }
-
-    public void setUsuariosPK(UsuariosPK usuariosPK) {
-        this.usuariosPK = usuariosPK;
+    public void setUsuaCodigo(Integer usuaCodigo) {
+        this.usuaCodigo = usuaCodigo;
     }
 
     public String getUsuaNombres() {
@@ -105,6 +111,15 @@ public class Usuarios implements Serializable {
         this.usuaEstado = usuaEstado;
     }
 
+    @XmlTransient
+    public List<Parqueo> getParqueoList() {
+        return parqueoList;
+    }
+
+    public void setParqueoList(List<Parqueo> parqueoList) {
+        this.parqueoList = parqueoList;
+    }
+
     public Facturas getFactCodigo() {
         return factCodigo;
     }
@@ -113,12 +128,12 @@ public class Usuarios implements Serializable {
         this.factCodigo = factCodigo;
     }
 
-    public Roles getRoles() {
-        return roles;
+    public Roles getRolCodigo() {
+        return rolCodigo;
     }
 
-    public void setRoles(Roles roles) {
-        this.roles = roles;
+    public void setRolCodigo(Roles rolCodigo) {
+        this.rolCodigo = rolCodigo;
     }
 
     public Ticket getTicketCodigo() {
@@ -132,7 +147,7 @@ public class Usuarios implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (usuariosPK != null ? usuariosPK.hashCode() : 0);
+        hash += (usuaCodigo != null ? usuaCodigo.hashCode() : 0);
         return hash;
     }
 
@@ -143,7 +158,7 @@ public class Usuarios implements Serializable {
             return false;
         }
         Usuarios other = (Usuarios) object;
-        if ((this.usuariosPK == null && other.usuariosPK != null) || (this.usuariosPK != null && !this.usuariosPK.equals(other.usuariosPK))) {
+        if ((this.usuaCodigo == null && other.usuaCodigo != null) || (this.usuaCodigo != null && !this.usuaCodigo.equals(other.usuaCodigo))) {
             return false;
         }
         return true;
@@ -151,7 +166,7 @@ public class Usuarios implements Serializable {
 
     @Override
     public String toString() {
-        return "jpaentity.Usuarios[ usuariosPK=" + usuariosPK + " ]";
+        return "jpaentity.UsuariosDTO[ usuaCodigo=" + usuaCodigo + " ]";
     }
     
 }

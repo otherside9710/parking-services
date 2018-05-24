@@ -6,9 +6,8 @@
 package com.parking.parkingservices.model.entity;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,7 +22,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Otherside
+ * @author MyAsesor
  */
 @Entity
 @Table(name = "tarifas")
@@ -46,8 +45,8 @@ public class Tarifas implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "tari_valor")
     private Double tariValor;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tariCodigo")
-    private Collection<Parqueo> parqueoCollection;
+    @OneToMany(mappedBy = "tariCodigo")
+    private List<Parqueo> parqueoList;
 
     public Tarifas() {
     }
@@ -81,12 +80,12 @@ public class Tarifas implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Parqueo> getParqueoCollection() {
-        return parqueoCollection;
+    public List<Parqueo> getParqueoList() {
+        return parqueoList;
     }
 
-    public void setParqueoCollection(Collection<Parqueo> parqueoCollection) {
-        this.parqueoCollection = parqueoCollection;
+    public void setParqueoList(List<Parqueo> parqueoList) {
+        this.parqueoList = parqueoList;
     }
 
     @Override

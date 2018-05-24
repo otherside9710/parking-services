@@ -6,59 +6,67 @@
 package com.parking.parkingservices.model.entity;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.Basic;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Otherside
+ * @author MyAsesor
  */
 @Entity
 @Table(name = "zonas")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Zonas.findAll", query = "SELECT z FROM Zonas z")
-    , @NamedQuery(name = "Zonas.findByZonaCodigo", query = "SELECT z FROM Zonas z WHERE z.zonasPK.zonaCodigo = :zonaCodigo")
+    , @NamedQuery(name = "Zonas.findByZonaCodigo", query = "SELECT z FROM Zonas z WHERE z.zonaCodigo = :zonaCodigo")
     , @NamedQuery(name = "Zonas.findByZonaDescripcion", query = "SELECT z FROM Zonas z WHERE z.zonaDescripcion = :zonaDescripcion")
-    , @NamedQuery(name = "Zonas.findByZonaEstado", query = "SELECT z FROM Zonas z WHERE z.zonaEstado = :zonaEstado")
-    , @NamedQuery(name = "Zonas.findByParCodigo", query = "SELECT z FROM Zonas z WHERE z.zonasPK.parCodigo = :parCodigo")})
+    , @NamedQuery(name = "Zonas.findByZonaEstado", query = "SELECT z FROM Zonas z WHERE z.zonaEstado = :zonaEstado")})
 public class Zonas implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @EmbeddedId
-    protected ZonasPK zonasPK;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "zona_codigo")
+    private Integer zonaCodigo;
     @Column(name = "zona_descripcion")
     private String zonaDescripcion;
     @Column(name = "zona_estado")
     private String zonaEstado;
-    @JoinColumn(name = "par_codigo", referencedColumnName = "par_codigo", insertable = false, updatable = false)
+    @JoinColumn(name = "par_codigo", referencedColumnName = "par_codigo")
     @ManyToOne(optional = false)
-    private Parqueo parqueo;
+    private Parqueo parCodigo;
+    @OneToMany(mappedBy = "zonaCodigo")
+    private List<Parqueo> parqueoList;
+    @OneToMany(mappedBy = "zonaCodigo")
+    private List<Vehiculo> vehiculoList;
 
     public Zonas() {
     }
 
-    public Zonas(ZonasPK zonasPK) {
-        this.zonasPK = zonasPK;
+    public Zonas(Integer zonaCodigo) {
+        this.zonaCodigo = zonaCodigo;
     }
 
-    public Zonas(int zonaCodigo, int parCodigo) {
-        this.zonasPK = new ZonasPK(zonaCodigo, parCodigo);
+    public Integer getZonaCodigo() {
+        return zonaCodigo;
     }
 
-    public ZonasPK getZonasPK() {
-        return zonasPK;
-    }
-
-    public void setZonasPK(ZonasPK zonasPK) {
-        this.zonasPK = zonasPK;
+    public void setZonaCodigo(Integer zonaCodigo) {
+        this.zonaCodigo = zonaCodigo;
     }
 
     public String getZonaDescripcion() {
@@ -77,18 +85,36 @@ public class Zonas implements Serializable {
         this.zonaEstado = zonaEstado;
     }
 
-    public Parqueo getParqueo() {
-        return parqueo;
+    public Parqueo getParCodigo() {
+        return parCodigo;
     }
 
-    public void setParqueo(Parqueo parqueo) {
-        this.parqueo = parqueo;
+    public void setParCodigo(Parqueo parCodigo) {
+        this.parCodigo = parCodigo;
+    }
+
+    @XmlTransient
+    public List<Parqueo> getParqueoList() {
+        return parqueoList;
+    }
+
+    public void setParqueoList(List<Parqueo> parqueoList) {
+        this.parqueoList = parqueoList;
+    }
+
+    @XmlTransient
+    public List<Vehiculo> getVehiculoList() {
+        return vehiculoList;
+    }
+
+    public void setVehiculoList(List<Vehiculo> vehiculoList) {
+        this.vehiculoList = vehiculoList;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (zonasPK != null ? zonasPK.hashCode() : 0);
+        hash += (zonaCodigo != null ? zonaCodigo.hashCode() : 0);
         return hash;
     }
 
@@ -99,7 +125,7 @@ public class Zonas implements Serializable {
             return false;
         }
         Zonas other = (Zonas) object;
-        if ((this.zonasPK == null && other.zonasPK != null) || (this.zonasPK != null && !this.zonasPK.equals(other.zonasPK))) {
+        if ((this.zonaCodigo == null && other.zonaCodigo != null) || (this.zonaCodigo != null && !this.zonaCodigo.equals(other.zonaCodigo))) {
             return false;
         }
         return true;
@@ -107,7 +133,7 @@ public class Zonas implements Serializable {
 
     @Override
     public String toString() {
-        return "jpaentity.Zonas[ zonasPK=" + zonasPK + " ]";
+        return "jpaentity.Zonas[ zonaCodigo=" + zonaCodigo + " ]";
     }
     
 }
