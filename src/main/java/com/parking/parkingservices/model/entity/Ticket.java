@@ -131,7 +131,7 @@ public class Ticket implements Serializable {
 
     @Override
     public String toString() {
-        return "jpaentity.Ticket[ ticketCodigo=" + ticketCodigo + " ]";
+        return "jpaentity.ticket[ ticketCodigo=" + ticketCodigo + " ]";
     }
     
 }

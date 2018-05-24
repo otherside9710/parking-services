@@ -99,7 +99,7 @@ public class Roles implements Serializable {
 
     @Override
     public String toString() {
-        return "jpaentity.Roles[ rolCodigo=" + rolCodigo + " ]";
+        return "jpaentity.RolesDTO[ rolCodigo=" + rolCodigo + " ]";
     }
     
 }
