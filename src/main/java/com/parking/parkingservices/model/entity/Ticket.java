@@ -7,26 +7,24 @@ package com.parking.parkingservices.model.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author MyAsesor
+ * @author Otherside
  */
 @Entity
 @Table(name = "ticket")
@@ -50,10 +48,12 @@ public class Ticket implements Serializable {
     private Date ticketFecha;
     @Column(name = "ticket_estado")
     private String ticketEstado;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ticketCodigo")
-    private List<Clientes> clientesList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ticketCodigo")
-    private List<Usuarios> usuariosList;
+    @JoinColumn(name = "clie_codigo", referencedColumnName = "clie_codigo")
+    @ManyToOne
+    private Clientes clieCodigo;
+    @JoinColumn(name = "usua_codigo", referencedColumnName = "usua_codigo")
+    @ManyToOne
+    private Usuarios usuaCodigo;
 
     public Ticket() {
     }
@@ -91,22 +91,20 @@ public class Ticket implements Serializable {
         this.ticketEstado = ticketEstado;
     }
 
-    @XmlTransient
-    public List<Clientes> getClientesList() {
-        return clientesList;
+    public Clientes getClieCodigo() {
+        return clieCodigo;
     }
 
-    public void setClientesList(List<Clientes> clientesList) {
-        this.clientesList = clientesList;
+    public void setClieCodigo(Clientes clieCodigo) {
+        this.clieCodigo = clieCodigo;
     }
 
-    @XmlTransient
-    public List<Usuarios> getUsuariosList() {
-        return usuariosList;
+    public Usuarios getUsuaCodigo() {
+        return usuaCodigo;
     }
 
-    public void setUsuariosList(List<Usuarios> usuariosList) {
-        this.usuariosList = usuariosList;
+    public void setUsuaCodigo(Usuarios usuaCodigo) {
+        this.usuaCodigo = usuaCodigo;
     }
 
     @Override
@@ -131,7 +129,7 @@ public class Ticket implements Serializable {
 
     @Override
     public String toString() {
-        return "jpaentity.ticket[ ticketCodigo=" + ticketCodigo + " ]";
+        return "jpaentity.Ticket[ ticketCodigo=" + ticketCodigo + " ]";
     }
     
 }

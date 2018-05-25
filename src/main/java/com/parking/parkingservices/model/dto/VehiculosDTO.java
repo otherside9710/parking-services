@@ -9,18 +9,20 @@ public class VehiculosDTO {
     private Integer zonaCodigo;
     private Integer parCodigo;
     private Integer tpvCodigo;
+    private Integer clieCodigo;
 
     public VehiculosDTO() {
     }
 
     public VehiculosDTO(Integer vehCodigo, String vehPlaca, String vehEstado,
-                        Integer zonaCodigo, Integer parCodigo, Integer tpvCodigo) {
+                        Integer zonaCodigo, Integer parCodigo, Integer tpvCodigo, Integer clieCodigo) {
         this.vehCodigo = vehCodigo;
         this.vehPlaca = vehPlaca;
         this.vehEstado = vehEstado;
         this.zonaCodigo = zonaCodigo;
         this.parCodigo = parCodigo;
         this.tpvCodigo = tpvCodigo;
+        this.clieCodigo = clieCodigo;
     }
 
     public static VehiculosDTO createFromEntity(Vehiculo vehiculo){
@@ -30,7 +32,8 @@ public class VehiculosDTO {
                 vehiculo.getVehEstado(),
                 vehiculo.getZonaCodigo().getZonaCodigo(),
                 vehiculo.getParCodigo().getParCodigo(),
-                vehiculo.getTpvCodigo().getTpvCodigo()
+                vehiculo.getTpvCodigo().getTpvCodigo(),
+                vehiculo.getClieCodigo().getClieCodigo()
         );
     }
 
@@ -54,6 +57,12 @@ public class VehiculosDTO {
         tpVehiculo.setTpvCodigo(this.tpvCodigo);
 
         vehiculo.setTpvCodigo(tpVehiculo);
+
+        Clientes clientes = new Clientes();
+        clientes.setClieCodigo(this.clieCodigo);
+
+        vehiculo.setClieCodigo(clientes);
+
         return vehiculo;
     }
 
@@ -103,5 +112,13 @@ public class VehiculosDTO {
 
     public void setTpvCodigo(Integer tpvCodigo) {
         this.tpvCodigo = tpvCodigo;
+    }
+
+    public Integer getClieCodigo() {
+        return clieCodigo;
+    }
+
+    public void setClieCodigo(Integer clieCodigo) {
+        this.clieCodigo = clieCodigo;
     }
 }

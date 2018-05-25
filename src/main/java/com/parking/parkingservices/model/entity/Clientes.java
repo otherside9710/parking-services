@@ -6,22 +6,23 @@
 package com.parking.parkingservices.model.entity;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author MyAsesor
+ * @author Otherside
  */
 @Entity
 @Table(name = "clientes")
@@ -62,15 +63,12 @@ public class Clientes implements Serializable {
     private String clieEmail;
     @Column(name = "clie_estado")
     private String clieEstado;
-    @JoinColumn(name = "fact_codigo", referencedColumnName = "fact_codigo")
-    @ManyToOne(optional = false)
-    private Facturas factCodigo;
-    @JoinColumn(name = "ticket_codigo", referencedColumnName = "ticket_codigo")
-    @ManyToOne(optional = false)
-    private Ticket ticketCodigo;
-    @JoinColumn(name = "veh_codigo", referencedColumnName = "veh_codigo")
-    @ManyToOne(optional = false)
-    private Vehiculo vehCodigo;
+    @OneToMany(mappedBy = "clieCodigo")
+    private List<Ticket> ticketList;
+    @OneToMany(mappedBy = "clieCodigo")
+    private List<Facturas> facturasList;
+    @OneToMany(mappedBy = "clieCodigo")
+    private List<Vehiculo> vehiculoList;
 
     public Clientes() {
     }
@@ -156,28 +154,31 @@ public class Clientes implements Serializable {
         this.clieEstado = clieEstado;
     }
 
-    public Facturas getFactCodigo() {
-        return factCodigo;
+    @XmlTransient
+    public List<Ticket> getTicketList() {
+        return ticketList;
     }
 
-    public void setFactCodigo(Facturas factCodigo) {
-        this.factCodigo = factCodigo;
+    public void setTicketList(List<Ticket> ticketList) {
+        this.ticketList = ticketList;
     }
 
-    public Ticket getTicketCodigo() {
-        return ticketCodigo;
+    @XmlTransient
+    public List<Facturas> getFacturasList() {
+        return facturasList;
     }
 
-    public void setTicketCodigo(Ticket ticketCodigo) {
-        this.ticketCodigo = ticketCodigo;
+    public void setFacturasList(List<Facturas> facturasList) {
+        this.facturasList = facturasList;
     }
 
-    public Vehiculo getVehCodigo() {
-        return vehCodigo;
+    @XmlTransient
+    public List<Vehiculo> getVehiculoList() {
+        return vehiculoList;
     }
 
-    public void setVehCodigo(Vehiculo vehCodigo) {
-        this.vehCodigo = vehCodigo;
+    public void setVehiculoList(List<Vehiculo> vehiculoList) {
+        this.vehiculoList = vehiculoList;
     }
 
     @Override

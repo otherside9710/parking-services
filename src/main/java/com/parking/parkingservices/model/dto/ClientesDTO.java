@@ -15,17 +15,13 @@ public class ClientesDTO {
     private String clieDireccion;
     private String clieEmail;
     private String clieEstado;
-    private Integer factCodigo;
-    private Integer ticketCodigo;
-    private Integer vehCodigo;
 
     public ClientesDTO() {
     }
 
     public ClientesDTO(Integer clieCodigo, String clieNombres, String clieApellidos,
-                       String clieCedula, String clieTelefono, String clieCiudad, String clieDireccion,
-                       String clieEmail, String clieEstado, Integer factCodigo,
-                       Integer ticketCodigo, Integer vehCodigo) {
+                       String clieCedula, String clieTelefono,
+                       String clieCiudad, String clieDireccion, String clieEmail, String clieEstado) {
         this.clieCodigo = clieCodigo;
         this.clieNombres = clieNombres;
         this.clieApellidos = clieApellidos;
@@ -35,9 +31,6 @@ public class ClientesDTO {
         this.clieDireccion = clieDireccion;
         this.clieEmail = clieEmail;
         this.clieEstado = clieEstado;
-        this.factCodigo = factCodigo;
-        this.ticketCodigo = ticketCodigo;
-        this.vehCodigo = vehCodigo;
     }
 
     public static ClientesDTO createFromEntity(Clientes clientes){
@@ -50,10 +43,7 @@ public class ClientesDTO {
                 clientes.getClieCiudad(),
                 clientes.getClieDireccion(),
                 clientes.getClieEmail(),
-                clientes.getClieEstado(),
-                clientes.getFactCodigo().getFactCodigo(),
-                clientes.getTicketCodigo().getTicketCodigo(),
-                clientes.getVehCodigo().getVehCodigo()
+                clientes.getClieEstado()
         );
     }
 
@@ -68,20 +58,6 @@ public class ClientesDTO {
         clientes.setClieDireccion(this.clieDireccion);
         clientes.setClieEmail(this.clieEmail);
         clientes.setClieEstado(this.clieEstado);
-
-        Facturas facturas = new Facturas();
-        facturas.setFactCodigo(this.factCodigo);
-
-        Ticket ticket = new Ticket();
-        ticket.setTicketCodigo(this.ticketCodigo);
-
-        Vehiculo vehiculo = new Vehiculo();
-        vehiculo.setVehCodigo(this.vehCodigo);
-
-        clientes.setFactCodigo(facturas);
-        clientes.setTicketCodigo(ticket);
-        clientes.setVehCodigo(vehiculo);
-
         return clientes;
     }
 

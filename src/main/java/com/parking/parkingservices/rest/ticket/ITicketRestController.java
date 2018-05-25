@@ -1,5 +1,6 @@
 package com.parking.parkingservices.rest.ticket;
 
+import com.parking.parkingservices.model.dto.TickectDTO;
 import com.parking.parkingservices.model.dto.TpVehiculoDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,5 +11,5 @@ public interface ITicketRestController {
     ResponseEntity<?> findAll();
 
     @RequestMapping(value = "/add", produces = { "application/json" }, method = RequestMethod.POST)
-    ResponseEntity<?> save(TpVehiculoDTO tpVehiculoDTO);
+    ResponseEntity<?> save(TickectDTO tickectDTO);
 }

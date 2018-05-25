@@ -8,7 +8,6 @@ package com.parking.parkingservices.model.entity;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,7 +24,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author MyAsesor
+ * @author Otherside
  */
 @Entity
 @Table(name = "vehiculo")
@@ -53,14 +52,15 @@ public class Vehiculo implements Serializable {
     @JoinColumn(name = "zona_codigo", referencedColumnName = "zona_codigo")
     @ManyToOne
     private Zonas zonaCodigo;
+    @JoinColumn(name = "clie_codigo", referencedColumnName = "clie_codigo")
+    @ManyToOne
+    private Clientes clieCodigo;
     @JoinColumn(name = "par_codigo", referencedColumnName = "par_codigo")
     @ManyToOne(optional = false)
     private Parqueo parCodigo;
     @JoinColumn(name = "tpv_codigo", referencedColumnName = "tpv_codigo")
     @ManyToOne(optional = false)
     private TpVehiculo tpvCodigo;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vehCodigo")
-    private List<Clientes> clientesList;
 
     public Vehiculo() {
     }
@@ -115,6 +115,14 @@ public class Vehiculo implements Serializable {
         this.zonaCodigo = zonaCodigo;
     }
 
+    public Clientes getClieCodigo() {
+        return clieCodigo;
+    }
+
+    public void setClieCodigo(Clientes clieCodigo) {
+        this.clieCodigo = clieCodigo;
+    }
+
     public Parqueo getParCodigo() {
         return parCodigo;
     }
@@ -129,15 +137,6 @@ public class Vehiculo implements Serializable {
 
     public void setTpvCodigo(TpVehiculo tpvCodigo) {
         this.tpvCodigo = tpvCodigo;
-    }
-
-    @XmlTransient
-    public List<Clientes> getClientesList() {
-        return clientesList;
-    }
-
-    public void setClientesList(List<Clientes> clientesList) {
-        this.clientesList = clientesList;
     }
 
     @Override

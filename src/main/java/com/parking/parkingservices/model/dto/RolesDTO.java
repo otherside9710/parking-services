@@ -5,19 +5,22 @@ import com.parking.parkingservices.model.entity.Roles;
 public class RolesDTO {
     private Integer rolCodigo;
     private String rolDescripcion;
+    private String rolEstado;
 
     public RolesDTO() {
     }
 
-    public RolesDTO(Integer rolCodigo, String rolDescripcion) {
+    public RolesDTO(Integer rolCodigo, String rolDescripcion, String rolEstado) {
         this.rolCodigo = rolCodigo;
         this.rolDescripcion = rolDescripcion;
+        this.rolEstado = rolEstado;
     }
 
     public static RolesDTO createFromEntity(Roles roles){
         return new RolesDTO(
                 roles.getRolCodigo(),
-                roles.getRolDescripcion()
+                roles.getRolDescripcion(),
+                roles.getRolEstado()
         );
     }
 
@@ -25,6 +28,7 @@ public class RolesDTO {
         Roles roles = new Roles();
         roles.setRolCodigo(this.rolCodigo);
         roles.setRolDescripcion(this.rolDescripcion);
+        roles.setRolEstado(this.rolEstado);
         return roles;
     }
 
@@ -42,5 +46,13 @@ public class RolesDTO {
 
     public void setRolDescripcion(String rolDescripcion) {
         this.rolDescripcion = rolDescripcion;
+    }
+
+    public String getRolEstado() {
+        return rolEstado;
+    }
+
+    public void setRolEstado(String rolEstado) {
+        this.rolEstado = rolEstado;
     }
 }
