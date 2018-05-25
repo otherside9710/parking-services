@@ -7,9 +7,7 @@ package com.parking.parkingservices.model.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,16 +17,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Otherside
+ * @author MyAsesor
  */
 @Entity
 @Table(name = "parqueo")
@@ -37,7 +33,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Parqueo.findAll", query = "SELECT p FROM Parqueo p")
     , @NamedQuery(name = "Parqueo.findByParCodigo", query = "SELECT p FROM Parqueo p WHERE p.parCodigo = :parCodigo")
     , @NamedQuery(name = "Parqueo.findByParHinicio", query = "SELECT p FROM Parqueo p WHERE p.parHinicio = :parHinicio")
-    , @NamedQuery(name = "Parqueo.findByParHfinal", query = "SELECT p FROM Parqueo p WHERE p.parHfinal = :parHfinal")})
+    , @NamedQuery(name = "Parqueo.findByParHfinal", query = "SELECT p FROM Parqueo p WHERE p.parHfinal = :parHfinal")
+    , @NamedQuery(name = "Parqueo.findByParEstado", query = "SELECT p FROM Parqueo p WHERE p.parEstado = :parEstado")
+    , @NamedQuery(name = "Parqueo.findByParObservacion", query = "SELECT p FROM Parqueo p WHERE p.parObservacion = :parObservacion")})
 public class Parqueo implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -52,8 +50,10 @@ public class Parqueo implements Serializable {
     @Column(name = "par_hfinal")
     @Temporal(TemporalType.TIMESTAMP)
     private Date parHfinal;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "parCodigo")
-    private List<Zonas> zonasList;
+    @Column(name = "par_estado")
+    private String parEstado;
+    @Column(name = "par_observacion")
+    private String parObservacion;
     @JoinColumn(name = "tari_codigo", referencedColumnName = "tari_codigo")
     @ManyToOne
     private Tarifas tariCodigo;
@@ -66,8 +66,6 @@ public class Parqueo implements Serializable {
     @JoinColumn(name = "zona_codigo", referencedColumnName = "zona_codigo")
     @ManyToOne
     private Zonas zonaCodigo;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "parCodigo")
-    private List<Vehiculo> vehiculoList;
 
     public Parqueo() {
     }
@@ -100,13 +98,20 @@ public class Parqueo implements Serializable {
         this.parHfinal = parHfinal;
     }
 
-    @XmlTransient
-    public List<Zonas> getZonasList() {
-        return zonasList;
+    public String getParEstado() {
+        return parEstado;
     }
 
-    public void setZonasList(List<Zonas> zonasList) {
-        this.zonasList = zonasList;
+    public void setParEstado(String parEstado) {
+        this.parEstado = parEstado;
+    }
+
+    public String getParObservacion() {
+        return parObservacion;
+    }
+
+    public void setParObservacion(String parObservacion) {
+        this.parObservacion = parObservacion;
     }
 
     public Tarifas getTariCodigo() {
@@ -139,15 +144,6 @@ public class Parqueo implements Serializable {
 
     public void setZonaCodigo(Zonas zonaCodigo) {
         this.zonaCodigo = zonaCodigo;
-    }
-
-    @XmlTransient
-    public List<Vehiculo> getVehiculoList() {
-        return vehiculoList;
-    }
-
-    public void setVehiculoList(List<Vehiculo> vehiculoList) {
-        this.vehiculoList = vehiculoList;
     }
 
     @Override

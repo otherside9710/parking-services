@@ -6,6 +6,7 @@
 package com.parking.parkingservices.model.entity;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,12 +17,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Otherside
+ * @author MyAsesor
  */
 @Entity
 @Table(name = "usuarios")
@@ -52,6 +55,12 @@ public class Usuarios implements Serializable {
     private String usuaCiudad;
     @Column(name = "usua_estado")
     private String usuaEstado;
+    @OneToMany(mappedBy = "usuaCodigo")
+    private List<Parqueo> parqueoList;
+    @OneToMany(mappedBy = "usuaCodigo")
+    private List<Ticket> ticketList;
+    @OneToMany(mappedBy = "usuaCodigo")
+    private List<Facturas> facturasList;
     @JoinColumn(name = "rol_codigo", referencedColumnName = "rol_codigo")
     @ManyToOne(optional = false)
     private Roles rolCodigo;
@@ -109,6 +118,33 @@ public class Usuarios implements Serializable {
 
     public void setUsuaEstado(String usuaEstado) {
         this.usuaEstado = usuaEstado;
+    }
+
+    @XmlTransient
+    public List<Parqueo> getParqueoList() {
+        return parqueoList;
+    }
+
+    public void setParqueoList(List<Parqueo> parqueoList) {
+        this.parqueoList = parqueoList;
+    }
+
+    @XmlTransient
+    public List<Ticket> getTicketList() {
+        return ticketList;
+    }
+
+    public void setTicketList(List<Ticket> ticketList) {
+        this.ticketList = ticketList;
+    }
+
+    @XmlTransient
+    public List<Facturas> getFacturasList() {
+        return facturasList;
+    }
+
+    public void setFacturasList(List<Facturas> facturasList) {
+        this.facturasList = facturasList;
     }
 
     public Roles getRolCodigo() {

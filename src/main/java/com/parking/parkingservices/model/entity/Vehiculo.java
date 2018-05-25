@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Otherside
+ * @author MyAsesor
  */
 @Entity
 @Table(name = "vehiculo")
@@ -55,9 +55,6 @@ public class Vehiculo implements Serializable {
     @JoinColumn(name = "clie_codigo", referencedColumnName = "clie_codigo")
     @ManyToOne
     private Clientes clieCodigo;
-    @JoinColumn(name = "par_codigo", referencedColumnName = "par_codigo")
-    @ManyToOne(optional = false)
-    private Parqueo parCodigo;
     @JoinColumn(name = "tpv_codigo", referencedColumnName = "tpv_codigo")
     @ManyToOne(optional = false)
     private TpVehiculo tpvCodigo;
@@ -121,14 +118,6 @@ public class Vehiculo implements Serializable {
 
     public void setClieCodigo(Clientes clieCodigo) {
         this.clieCodigo = clieCodigo;
-    }
-
-    public Parqueo getParCodigo() {
-        return parCodigo;
-    }
-
-    public void setParCodigo(Parqueo parCodigo) {
-        this.parCodigo = parCodigo;
     }
 
     public TpVehiculo getTpvCodigo() {

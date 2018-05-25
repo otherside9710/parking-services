@@ -8,6 +8,8 @@ public class ParqueoDTO {
     private Integer parCodigo;
     private Date parHinicio;
     private Date parHfinal;
+    private String parEstado;
+    private String parObservacion;
     private Integer tariCodigo;
     private Integer usuaCodigo;
     private Integer vehCodigo;
@@ -15,11 +17,14 @@ public class ParqueoDTO {
 
     public ParqueoDTO(){}
 
-    public ParqueoDTO(Integer parCodigo, Date parHinicio, Date parHfinal, Integer tariCodigo,
-                      Integer usuaCodigo, Integer vehCodigo, Integer zonaCodigo) {
+    public ParqueoDTO(Integer parCodigo, Date parHinicio, Date parHfinal, String parEstado,
+                      String parObservacion, Integer tariCodigo, Integer usuaCodigo,
+                      Integer vehCodigo, Integer zonaCodigo) {
         this.parCodigo = parCodigo;
         this.parHinicio = parHinicio;
         this.parHfinal = parHfinal;
+        this.parEstado = parEstado;
+        this.parObservacion = parObservacion;
         this.tariCodigo = tariCodigo;
         this.usuaCodigo = usuaCodigo;
         this.vehCodigo = vehCodigo;
@@ -31,6 +36,8 @@ public class ParqueoDTO {
                 parqueo.getParCodigo(),
                 parqueo.getParHinicio(),
                 parqueo.getParHfinal(),
+                parqueo.getParEstado(),
+                parqueo.getParObservacion(),
                 parqueo.getTariCodigo().getTariCodigo(),
                 parqueo.getUsuaCodigo().getUsuaCodigo(),
                 parqueo.getVehCodigo().getVehCodigo(),
@@ -43,6 +50,8 @@ public class ParqueoDTO {
         parqueo.setParCodigo(this.parCodigo);
         parqueo.setParHinicio(this.parHinicio);
         parqueo.setParHfinal(this.parHfinal);
+        parqueo.setParEstado(this.parEstado);
+        parqueo.setParObservacion(this.parObservacion);
 
         Tarifas tarifas = new Tarifas();
         tarifas.setTariCodigo(this.tariCodigo);
@@ -120,5 +129,21 @@ public class ParqueoDTO {
 
     public void setZonaCodigo(Integer zonaCodigo) {
         this.zonaCodigo = zonaCodigo;
+    }
+
+    public String getParEstado() {
+        return parEstado;
+    }
+
+    public void setParEstado(String parEstado) {
+        this.parEstado = parEstado;
+    }
+
+    public String getParObservacion() {
+        return parObservacion;
+    }
+
+    public void setParObservacion(String parObservacion) {
+        this.parObservacion = parObservacion;
     }
 }

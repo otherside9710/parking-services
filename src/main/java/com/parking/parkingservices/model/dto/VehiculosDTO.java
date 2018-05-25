@@ -7,7 +7,6 @@ public class VehiculosDTO {
     private String vehPlaca;
     private String vehEstado;
     private Integer zonaCodigo;
-    private Integer parCodigo;
     private Integer tpvCodigo;
     private Integer clieCodigo;
 
@@ -15,12 +14,11 @@ public class VehiculosDTO {
     }
 
     public VehiculosDTO(Integer vehCodigo, String vehPlaca, String vehEstado,
-                        Integer zonaCodigo, Integer parCodigo, Integer tpvCodigo, Integer clieCodigo) {
+                        Integer zonaCodigo, Integer tpvCodigo, Integer clieCodigo) {
         this.vehCodigo = vehCodigo;
         this.vehPlaca = vehPlaca;
         this.vehEstado = vehEstado;
         this.zonaCodigo = zonaCodigo;
-        this.parCodigo = parCodigo;
         this.tpvCodigo = tpvCodigo;
         this.clieCodigo = clieCodigo;
     }
@@ -31,7 +29,6 @@ public class VehiculosDTO {
                 vehiculo.getVehPlaca(),
                 vehiculo.getVehEstado(),
                 vehiculo.getZonaCodigo().getZonaCodigo(),
-                vehiculo.getParCodigo().getParCodigo(),
                 vehiculo.getTpvCodigo().getTpvCodigo(),
                 vehiculo.getClieCodigo().getClieCodigo()
         );
@@ -47,11 +44,6 @@ public class VehiculosDTO {
         zonas.setZonaCodigo(this.zonaCodigo);
 
         vehiculo.setZonaCodigo(zonas);
-
-        Parqueo parqueo = new Parqueo();
-        parqueo.setParCodigo(this.parCodigo);
-
-        vehiculo.setParCodigo(parqueo);
 
         TpVehiculo tpVehiculo = new TpVehiculo();
         tpVehiculo.setTpvCodigo(this.tpvCodigo);
@@ -96,14 +88,6 @@ public class VehiculosDTO {
 
     public void setZonaCodigo(Integer zonaCodigo) {
         this.zonaCodigo = zonaCodigo;
-    }
-
-    public Integer getParCodigo() {
-        return parCodigo;
-    }
-
-    public void setParCodigo(Integer parCodigo) {
-        this.parCodigo = parCodigo;
     }
 
     public Integer getTpvCodigo() {

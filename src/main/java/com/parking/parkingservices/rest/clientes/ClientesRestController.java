@@ -10,10 +10,8 @@ import com.parking.parkingservices.rest.pdf.ReporteResController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,7 +19,7 @@ import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
+@CrossOrigin()
 @RestController
 @RequestMapping("/clientes")
 public class ClientesRestController implements IClientesRestController {
@@ -51,15 +49,11 @@ public class ClientesRestController implements IClientesRestController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
+    @Transactional
     public ResponseEntity<?> save(@RequestBody ClientesDTO clientesDTO) {
         try {
-            Clientes clients = clientesRepository.findOne(clientesDTO.getClieCodigo() + "");
-            if (clients == null) {
-                clientesRepository.save(clientesDTO.toEntity());
-                return new ResponseEntity<>(clientesDTO, HttpStatus.CREATED);
-            } else {
-                return new ResponseEntity<String>(HttpStatus.ALREADY_REPORTED);
-            }
+            clientesRepository.save(clientesDTO.toEntity());
+            return new ResponseEntity<>(clientesDTO, HttpStatus.CREATED);
         } catch (Exception e) {
             System.out.println(e.toString());
             return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);

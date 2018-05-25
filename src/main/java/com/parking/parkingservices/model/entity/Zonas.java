@@ -13,8 +13,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -24,7 +22,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Otherside
+ * @author MyAsesor
  */
 @Entity
 @Table(name = "zonas")
@@ -46,9 +44,6 @@ public class Zonas implements Serializable {
     private String zonaDescripcion;
     @Column(name = "zona_estado")
     private String zonaEstado;
-    @JoinColumn(name = "par_codigo", referencedColumnName = "par_codigo")
-    @ManyToOne(optional = false)
-    private Parqueo parCodigo;
     @OneToMany(mappedBy = "zonaCodigo")
     private List<Parqueo> parqueoList;
     @OneToMany(mappedBy = "zonaCodigo")
@@ -83,14 +78,6 @@ public class Zonas implements Serializable {
 
     public void setZonaEstado(String zonaEstado) {
         this.zonaEstado = zonaEstado;
-    }
-
-    public Parqueo getParCodigo() {
-        return parCodigo;
-    }
-
-    public void setParCodigo(Parqueo parCodigo) {
-        this.parCodigo = parCodigo;
     }
 
     @XmlTransient
