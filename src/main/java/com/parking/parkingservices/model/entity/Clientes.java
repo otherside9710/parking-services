@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author MyAsesor
+ * @author Otherside
  */
 @Entity
 @Table(name = "clientes")
@@ -63,8 +63,6 @@ public class Clientes implements Serializable {
     private String clieEmail;
     @Column(name = "clie_estado")
     private String clieEstado;
-    @OneToMany(mappedBy = "clieCodigo")
-    private List<Ticket> ticketList;
     @OneToMany(mappedBy = "clieCodigo")
     private List<Facturas> facturasList;
     @OneToMany(mappedBy = "clieCodigo")
@@ -152,15 +150,6 @@ public class Clientes implements Serializable {
 
     public void setClieEstado(String clieEstado) {
         this.clieEstado = clieEstado;
-    }
-
-    @XmlTransient
-    public List<Ticket> getTicketList() {
-        return ticketList;
-    }
-
-    public void setTicketList(List<Ticket> ticketList) {
-        this.ticketList = ticketList;
     }
 
     @XmlTransient

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
+
 @CrossOrigin()
 @RestController
 @RequestMapping("/roles")
@@ -40,13 +41,8 @@ public class RolesRestController implements IRolesRestController {
 
     public ResponseEntity<?> save(@RequestBody RolesDTO rolesDTO) {
         try {
-            Roles roles = rolesRepository.findOne(rolesDTO.getRolCodigo() + "");
-            if (roles == null) {
-                rolesRepository.save(rolesDTO.toEntity());
-                return new ResponseEntity<>(rolesDTO, HttpStatus.CREATED);
-            } else {
-                return new ResponseEntity<String>(HttpStatus.ALREADY_REPORTED);
-            }
+            rolesRepository.save(rolesDTO.toEntity());
+            return new ResponseEntity<>(rolesDTO, HttpStatus.CREATED);
         } catch (Exception e) {
             System.out.println(e.toString());
             return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);

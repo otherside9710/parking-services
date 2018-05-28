@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
+
 @CrossOrigin()
 @RestController
 @RequestMapping("/parqueo")
@@ -40,13 +41,8 @@ public class ParqueoRestController implements IParqueoRestController {
 
     public ResponseEntity<?> save(@RequestBody ParqueoDTO parqueoDTO) {
         try {
-            Parqueo usuarios = parqueoRepository.findOne(parqueoDTO.getParCodigo() + "");
-            if (usuarios == null) {
-                parqueoRepository.save(parqueoDTO.toEntity());
-                return new ResponseEntity<>(parqueoDTO, HttpStatus.CREATED);
-            } else {
-                return new ResponseEntity<String>(HttpStatus.ALREADY_REPORTED);
-            }
+            parqueoRepository.save(parqueoDTO.toEntity());
+            return new ResponseEntity<>(parqueoDTO, HttpStatus.CREATED);
         } catch (Exception e) {
             System.out.println(e.toString());
             return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);

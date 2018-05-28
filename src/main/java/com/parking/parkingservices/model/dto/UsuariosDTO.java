@@ -5,6 +5,7 @@ import com.parking.parkingservices.model.entity.Usuarios;
 
 public class UsuariosDTO {
     private Integer usuaCodigo;
+    private String usuaPassword;
     private String usuaNombres;
     private String usuaApellidos;
     private String usuaCedula;
@@ -15,11 +16,11 @@ public class UsuariosDTO {
     public UsuariosDTO() {
     }
 
-    public UsuariosDTO(Integer usuaCodigo, String usuaNombres,
-                       String usuaApellidos, String usuaCedula,
-                       String usuaCiudad,
-                       String usuaEstado,Integer rolCodigo) {
+    public UsuariosDTO(Integer usuaCodigo, String usuaPassword, String usuaNombres,
+                       String usuaApellidos, String usuaCedula, String usuaCiudad,
+                       String usuaEstado, Integer rolCodigo) {
         this.usuaCodigo = usuaCodigo;
+        this.usuaPassword = usuaPassword;
         this.usuaNombres = usuaNombres;
         this.usuaApellidos = usuaApellidos;
         this.usuaCedula = usuaCedula;
@@ -31,6 +32,7 @@ public class UsuariosDTO {
     public static UsuariosDTO createFromEntity(Usuarios usuarios){
         return new UsuariosDTO(
                 usuarios.getUsuaCodigo(),
+                usuarios.getUsuaPassword(),
                 usuarios.getUsuaNombres(),
                 usuarios.getUsuaApellidos(),
                 usuarios.getUsuaCedula(),
@@ -44,6 +46,7 @@ public class UsuariosDTO {
         Usuarios usuarios = new Usuarios();
 
         usuarios.setUsuaCodigo(this.usuaCodigo);
+        usuarios.setUsuaPassword(this.usuaPassword);
         usuarios.setUsuaNombres(this.usuaNombres);
         usuarios.setUsuaApellidos(this.usuaApellidos);
         usuarios.setUsuaCedula(this.usuaCedula);
@@ -114,4 +117,11 @@ public class UsuariosDTO {
         this.rolCodigo = rolCodigo;
     }
 
+    public String getUsuaPassword() {
+        return usuaPassword;
+    }
+
+    public void setUsuaPassword(String usuaPassword) {
+        this.usuaPassword = usuaPassword;
+    }
 }

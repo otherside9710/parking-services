@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
 @CrossOrigin()
 @RestController
 @RequestMapping("/usuarios")
@@ -43,16 +45,25 @@ public class UsuariosRestController implements IUsuariosRestController {
 
     public ResponseEntity<?> save(@RequestBody UsuariosDTO usuariosDTO) {
         try {
-            Usuarios usuarios = usuariosRepository.findOne(usuariosDTO.getUsuaCodigo() + "");
-            if (usuarios == null) {
-                usuariosRepository.save(usuariosDTO.toEntity());
-                return new ResponseEntity<>(usuariosDTO, HttpStatus.CREATED);
-            } else {
-                return new ResponseEntity<String>(HttpStatus.ALREADY_REPORTED);
-            }
+            usuariosRepository.save(usuariosDTO.toEntity());
+            return new ResponseEntity<>(usuariosDTO, HttpStatus.CREATED);
         } catch (Exception e) {
             System.out.println(e.toString());
             return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public ResponseEntity<?> login(@RequestBody HashMap<String, String> params){
+        try {
+            if (params.containsKey("usuaCedula") && params.containsKey("usuaPassword")){
+                String cedula = params.get("usuaCedula");
+                String pass = params.get("usuaPassword");
+
+                usuariosRepository.findOne();
+
+            }
+        }catch (Exception e){
+            System.out.println(e.toString());
         }
     }
 

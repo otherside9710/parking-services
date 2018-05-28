@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author MyAsesor
+ * @author Otherside
  */
 @Entity
 @Table(name = "usuarios")
@@ -32,6 +32,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Usuarios.findAll", query = "SELECT u FROM Usuarios u")
     , @NamedQuery(name = "Usuarios.findByUsuaCodigo", query = "SELECT u FROM Usuarios u WHERE u.usuaCodigo = :usuaCodigo")
+    , @NamedQuery(name = "Usuarios.findByUsuaPassword", query = "SELECT u FROM Usuarios u WHERE u.usuaPassword = :usuaPassword")
     , @NamedQuery(name = "Usuarios.findByUsuaNombres", query = "SELECT u FROM Usuarios u WHERE u.usuaNombres = :usuaNombres")
     , @NamedQuery(name = "Usuarios.findByUsuaApellidos", query = "SELECT u FROM Usuarios u WHERE u.usuaApellidos = :usuaApellidos")
     , @NamedQuery(name = "Usuarios.findByUsuaCedula", query = "SELECT u FROM Usuarios u WHERE u.usuaCedula = :usuaCedula")
@@ -45,10 +46,14 @@ public class Usuarios implements Serializable {
     @Basic(optional = false)
     @Column(name = "usua_codigo")
     private Integer usuaCodigo;
+    @Basic(optional = false)
+    @Column(name = "usua_password")
+    private String usuaPassword;
     @Column(name = "usua_nombres")
     private String usuaNombres;
     @Column(name = "usua_apellidos")
     private String usuaApellidos;
+    @Basic(optional = false)
     @Column(name = "usua_cedula")
     private String usuaCedula;
     @Column(name = "usua_ciudad")
@@ -57,8 +62,6 @@ public class Usuarios implements Serializable {
     private String usuaEstado;
     @OneToMany(mappedBy = "usuaCodigo")
     private List<Parqueo> parqueoList;
-    @OneToMany(mappedBy = "usuaCodigo")
-    private List<Ticket> ticketList;
     @OneToMany(mappedBy = "usuaCodigo")
     private List<Facturas> facturasList;
     @JoinColumn(name = "rol_codigo", referencedColumnName = "rol_codigo")
@@ -72,12 +75,26 @@ public class Usuarios implements Serializable {
         this.usuaCodigo = usuaCodigo;
     }
 
+    public Usuarios(Integer usuaCodigo, String usuaPassword, String usuaCedula) {
+        this.usuaCodigo = usuaCodigo;
+        this.usuaPassword = usuaPassword;
+        this.usuaCedula = usuaCedula;
+    }
+
     public Integer getUsuaCodigo() {
         return usuaCodigo;
     }
 
     public void setUsuaCodigo(Integer usuaCodigo) {
         this.usuaCodigo = usuaCodigo;
+    }
+
+    public String getUsuaPassword() {
+        return usuaPassword;
+    }
+
+    public void setUsuaPassword(String usuaPassword) {
+        this.usuaPassword = usuaPassword;
     }
 
     public String getUsuaNombres() {
@@ -127,15 +144,6 @@ public class Usuarios implements Serializable {
 
     public void setParqueoList(List<Parqueo> parqueoList) {
         this.parqueoList = parqueoList;
-    }
-
-    @XmlTransient
-    public List<Ticket> getTicketList() {
-        return ticketList;
-    }
-
-    public void setTicketList(List<Ticket> ticketList) {
-        this.ticketList = ticketList;
     }
 
     @XmlTransient

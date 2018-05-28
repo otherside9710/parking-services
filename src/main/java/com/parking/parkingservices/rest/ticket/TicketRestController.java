@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
+
 @CrossOrigin()
 @RestController
 @RequestMapping("/tickets")
@@ -40,13 +41,8 @@ public class TicketRestController implements ITicketRestController {
 
     public ResponseEntity<?> save(@RequestBody TickectDTO tickectDTO) {
         try {
-            Ticket ticket = ticketRepository.findOne(tickectDTO.getTicketCodigo() + "");
-            if (ticket == null) {
-                ticketRepository.save(tickectDTO.toEntity());
-                return new ResponseEntity<>(tickectDTO, HttpStatus.CREATED);
-            } else {
-                return new ResponseEntity<String>(HttpStatus.ALREADY_REPORTED);
-            }
+            ticketRepository.save(tickectDTO.toEntity());
+            return new ResponseEntity<>(tickectDTO, HttpStatus.CREATED);
         } catch (Exception e) {
             System.out.println(e.toString());
             return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);

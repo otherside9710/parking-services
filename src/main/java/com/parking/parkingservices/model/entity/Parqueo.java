@@ -7,7 +7,9 @@ package com.parking.parkingservices.model.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,14 +19,16 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author MyAsesor
+ * @author Otherside
  */
 @Entity
 @Table(name = "parqueo")
@@ -54,9 +58,6 @@ public class Parqueo implements Serializable {
     private String parEstado;
     @Column(name = "par_observacion")
     private String parObservacion;
-    @JoinColumn(name = "tari_codigo", referencedColumnName = "tari_codigo")
-    @ManyToOne
-    private Tarifas tariCodigo;
     @JoinColumn(name = "usua_codigo", referencedColumnName = "usua_codigo")
     @ManyToOne
     private Usuarios usuaCodigo;
@@ -66,6 +67,8 @@ public class Parqueo implements Serializable {
     @JoinColumn(name = "zona_codigo", referencedColumnName = "zona_codigo")
     @ManyToOne
     private Zonas zonaCodigo;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "parqueo")
+    private List<Ticket> ticketList;
 
     public Parqueo() {
     }
@@ -114,14 +117,6 @@ public class Parqueo implements Serializable {
         this.parObservacion = parObservacion;
     }
 
-    public Tarifas getTariCodigo() {
-        return tariCodigo;
-    }
-
-    public void setTariCodigo(Tarifas tariCodigo) {
-        this.tariCodigo = tariCodigo;
-    }
-
     public Usuarios getUsuaCodigo() {
         return usuaCodigo;
     }
@@ -144,6 +139,15 @@ public class Parqueo implements Serializable {
 
     public void setZonaCodigo(Zonas zonaCodigo) {
         this.zonaCodigo = zonaCodigo;
+    }
+
+    @XmlTransient
+    public List<Ticket> getTicketList() {
+        return ticketList;
+    }
+
+    public void setTicketList(List<Ticket> ticketList) {
+        this.ticketList = ticketList;
     }
 
     @Override

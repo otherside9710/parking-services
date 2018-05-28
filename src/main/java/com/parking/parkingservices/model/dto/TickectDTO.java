@@ -1,63 +1,70 @@
 package com.parking.parkingservices.model.dto;
 
-import com.parking.parkingservices.model.entity.Clientes;
-import com.parking.parkingservices.model.entity.Ticket;
-import com.parking.parkingservices.model.entity.Usuarios;
+import com.parking.parkingservices.model.entity.*;
 
 import java.util.Date;
 
 public class TickectDTO {
-    private Integer ticketCodigo;
+    private int ticketCodigo;
+    private int parCodigo;
     private Date ticketFecha;
     private String ticketEstado;
-    private Integer clieCodigo;
-    private Integer usuaCodigo;
+    private int parqueo;
 
     public TickectDTO() {
     }
 
-    public TickectDTO(Integer ticketCodigo, Date ticketFecha,
-                      String ticketEstado, Integer clieCodigo, Integer usuaCodigo) {
+    public TickectDTO(int ticketCodigo, int parCodigo,
+                      Date ticketFecha, String ticketEstado, int parqueo) {
         this.ticketCodigo = ticketCodigo;
+        this.parCodigo = parCodigo;
         this.ticketFecha = ticketFecha;
         this.ticketEstado = ticketEstado;
-        this.clieCodigo = clieCodigo;
-        this.usuaCodigo = usuaCodigo;
+        this.parqueo = parqueo;
     }
 
     public static TickectDTO createFromEntity(Ticket ticket){
         return new TickectDTO(
-                ticket.getTicketCodigo(),
+                ticket.getTicketPK().getTicketCodigo(),
+                ticket.getTicketPK().getParCodigo(),
                 ticket.getTicketFecha(),
                 ticket.getTicketEstado(),
-                ticket.getClieCodigo().getClieCodigo(),
-                ticket.getUsuaCodigo().getUsuaCodigo()
+                ticket.getParqueo().getParCodigo()
         );
     }
 
     public Ticket toEntity(){
         Ticket ticket = new Ticket();
-        ticket.setTicketCodigo(this.ticketCodigo);
+        TicketPK ticketPK = new TicketPK();
+
+        ticketPK.setParCodigo(this.parCodigo);
+        ticketPK.setTicketCodigo(this.ticketCodigo);
+        ticket.setTicketPK(ticketPK);
+
         ticket.setTicketFecha(this.ticketFecha);
         ticket.setTicketEstado(this.ticketEstado);
 
-        Clientes clientes = new Clientes();
-        clientes.setClieCodigo(this.clieCodigo);
+        Parqueo parqueo = new Parqueo();
+        parqueo.setParCodigo(this.parCodigo);
+        ticket.setParqueo(parqueo);
 
-        Usuarios usuarios = new Usuarios();
-        usuarios.setUsuaCodigo(this.usuaCodigo);
-
-        ticket.setClieCodigo(clientes);
-        ticket.setUsuaCodigo(usuarios);
         return ticket;
     }
 
-    public Integer getTicketCodigo() {
+    public int getTicketCodigo() {
         return ticketCodigo;
     }
 
-    public void setTicketCodigo(Integer ticketCodigo) {
+    public void setTicketCodigo(int ticketCodigo) {
         this.ticketCodigo = ticketCodigo;
+    }
+
+    public int getParCodigo() {
+        return parCodigo;
+    }
+
+    public void setParCodigo(int parCodigo) {
+        this.parCodigo = parCodigo;
     }
 
     public Date getTicketFecha() {
@@ -76,19 +83,11 @@ public class TickectDTO {
         this.ticketEstado = ticketEstado;
     }
 
-    public Integer getClieCodigo() {
-        return clieCodigo;
+    public int getParqueo() {
+        return parqueo;
     }
 
-    public void setClieCodigo(Integer clieCodigo) {
-        this.clieCodigo = clieCodigo;
-    }
-
-    public Integer getUsuaCodigo() {
-        return usuaCodigo;
-    }
-
-    public void setUsuaCodigo(Integer usuaCodigo) {
-        this.usuaCodigo = usuaCodigo;
+    public void setParqueo(int parqueo) {
+        this.parqueo = parqueo;
     }
 }

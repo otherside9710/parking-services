@@ -9,10 +9,8 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -24,55 +22,54 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author MyAsesor
+ * @author Otherside
  */
 @Entity
 @Table(name = "ticket")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Ticket.findAll", query = "SELECT t FROM Ticket t")
-    , @NamedQuery(name = "Ticket.findByTicketCodigo", query = "SELECT t FROM Ticket t WHERE t.ticketCodigo = :ticketCodigo")
+    , @NamedQuery(name = "Ticket.findByTicketCodigo", query = "SELECT t FROM Ticket t WHERE t.ticketPK.ticketCodigo = :ticketCodigo")
+    , @NamedQuery(name = "Ticket.findByParCodigo", query = "SELECT t FROM Ticket t WHERE t.ticketPK.parCodigo = :parCodigo")
     , @NamedQuery(name = "Ticket.findByTicketFecha", query = "SELECT t FROM Ticket t WHERE t.ticketFecha = :ticketFecha")
     , @NamedQuery(name = "Ticket.findByTicketEstado", query = "SELECT t FROM Ticket t WHERE t.ticketEstado = :ticketEstado")})
 public class Ticket implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "ticket_codigo")
-    private Integer ticketCodigo;
+    @EmbeddedId
+    protected TicketPK ticketPK;
     @Basic(optional = false)
     @Column(name = "ticket_fecha")
     @Temporal(TemporalType.DATE)
     private Date ticketFecha;
     @Column(name = "ticket_estado")
     private String ticketEstado;
-    @JoinColumn(name = "clie_codigo", referencedColumnName = "clie_codigo")
-    @ManyToOne
-    private Clientes clieCodigo;
-    @JoinColumn(name = "usua_codigo", referencedColumnName = "usua_codigo")
-    @ManyToOne
-    private Usuarios usuaCodigo;
+    @JoinColumn(name = "par_codigo", referencedColumnName = "par_codigo", insertable = false, updatable = false)
+    @ManyToOne(optional = false)
+    private Parqueo parqueo;
 
     public Ticket() {
     }
 
-    public Ticket(Integer ticketCodigo) {
-        this.ticketCodigo = ticketCodigo;
+    public Ticket(TicketPK ticketPK) {
+        this.ticketPK = ticketPK;
     }
 
-    public Ticket(Integer ticketCodigo, Date ticketFecha) {
-        this.ticketCodigo = ticketCodigo;
+    public Ticket(TicketPK ticketPK, Date ticketFecha) {
+        this.ticketPK = ticketPK;
         this.ticketFecha = ticketFecha;
     }
 
-    public Integer getTicketCodigo() {
-        return ticketCodigo;
+    public Ticket(int ticketCodigo, int parCodigo) {
+        this.ticketPK = new TicketPK(ticketCodigo, parCodigo);
     }
 
-    public void setTicketCodigo(Integer ticketCodigo) {
-        this.ticketCodigo = ticketCodigo;
+    public TicketPK getTicketPK() {
+        return ticketPK;
+    }
+
+    public void setTicketPK(TicketPK ticketPK) {
+        this.ticketPK = ticketPK;
     }
 
     public Date getTicketFecha() {
@@ -91,26 +88,18 @@ public class Ticket implements Serializable {
         this.ticketEstado = ticketEstado;
     }
 
-    public Clientes getClieCodigo() {
-        return clieCodigo;
+    public Parqueo getParqueo() {
+        return parqueo;
     }
 
-    public void setClieCodigo(Clientes clieCodigo) {
-        this.clieCodigo = clieCodigo;
-    }
-
-    public Usuarios getUsuaCodigo() {
-        return usuaCodigo;
-    }
-
-    public void setUsuaCodigo(Usuarios usuaCodigo) {
-        this.usuaCodigo = usuaCodigo;
+    public void setParqueo(Parqueo parqueo) {
+        this.parqueo = parqueo;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (ticketCodigo != null ? ticketCodigo.hashCode() : 0);
+        hash += (ticketPK != null ? ticketPK.hashCode() : 0);
         return hash;
     }
 
@@ -121,7 +110,7 @@ public class Ticket implements Serializable {
             return false;
         }
         Ticket other = (Ticket) object;
-        if ((this.ticketCodigo == null && other.ticketCodigo != null) || (this.ticketCodigo != null && !this.ticketCodigo.equals(other.ticketCodigo))) {
+        if ((this.ticketPK == null && other.ticketPK != null) || (this.ticketPK != null && !this.ticketPK.equals(other.ticketPK))) {
             return false;
         }
         return true;
@@ -129,7 +118,7 @@ public class Ticket implements Serializable {
 
     @Override
     public String toString() {
-        return "jpaentity.Ticket[ ticketCodigo=" + ticketCodigo + " ]";
+        return "jpaentity.Ticket[ ticketPK=" + ticketPK + " ]";
     }
     
 }
