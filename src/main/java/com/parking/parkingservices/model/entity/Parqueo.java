@@ -6,10 +6,7 @@
 package com.parking.parkingservices.model.entity;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,16 +16,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Otherside
+ * @author MyAsesor
  */
 @Entity
 @Table(name = "parqueo")
@@ -49,11 +42,9 @@ public class Parqueo implements Serializable {
     @Column(name = "par_codigo")
     private Integer parCodigo;
     @Column(name = "par_hinicio")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date parHinicio;
+    private String parHinicio;
     @Column(name = "par_hfinal")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date parHfinal;
+    private String parHfinal;
     @Column(name = "par_estado")
     private String parEstado;
     @Column(name = "par_observacion")
@@ -67,8 +58,6 @@ public class Parqueo implements Serializable {
     @JoinColumn(name = "zona_codigo", referencedColumnName = "zona_codigo")
     @ManyToOne
     private Zonas zonaCodigo;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "parqueo")
-    private List<Ticket> ticketList;
 
     public Parqueo() {
     }
@@ -85,19 +74,19 @@ public class Parqueo implements Serializable {
         this.parCodigo = parCodigo;
     }
 
-    public Date getParHinicio() {
+    public String getParHinicio() {
         return parHinicio;
     }
 
-    public void setParHinicio(Date parHinicio) {
+    public void setParHinicio(String parHinicio) {
         this.parHinicio = parHinicio;
     }
 
-    public Date getParHfinal() {
+    public String getParHfinal() {
         return parHfinal;
     }
 
-    public void setParHfinal(Date parHfinal) {
+    public void setParHfinal(String parHfinal) {
         this.parHfinal = parHfinal;
     }
 
@@ -139,15 +128,6 @@ public class Parqueo implements Serializable {
 
     public void setZonaCodigo(Zonas zonaCodigo) {
         this.zonaCodigo = zonaCodigo;
-    }
-
-    @XmlTransient
-    public List<Ticket> getTicketList() {
-        return ticketList;
-    }
-
-    public void setTicketList(List<Ticket> ticketList) {
-        this.ticketList = ticketList;
     }
 
     @Override

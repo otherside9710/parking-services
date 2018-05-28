@@ -2,12 +2,10 @@ package com.parking.parkingservices.model.dto;
 
 import com.parking.parkingservices.model.entity.*;
 
-import java.util.Date;
-
 public class ParqueoDTO {
     private Integer parCodigo;
-    private Date parHinicio;
-    private Date parHfinal;
+    private String parHinicio;
+    private String parHfinal;
     private String parEstado;
     private String parObservacion;
     private Integer usuaCodigo;
@@ -16,7 +14,7 @@ public class ParqueoDTO {
 
     public ParqueoDTO(){}
 
-    public ParqueoDTO(Integer parCodigo, Date parHinicio, Date parHfinal, String parEstado,
+    public ParqueoDTO(Integer parCodigo, String parHinicio, String parHfinal, String parEstado,
                       String parObservacion,  Integer usuaCodigo,
                       Integer vehCodigo, Integer zonaCodigo) {
         this.parCodigo = parCodigo;
@@ -74,19 +72,19 @@ public class ParqueoDTO {
         this.parCodigo = parCodigo;
     }
 
-    public Date getParHinicio() {
+    public String getParHinicio() {
         return parHinicio;
     }
 
-    public void setParHinicio(Date parHinicio) {
+    public void setParHinicio(String parHinicio) {
         this.parHinicio = parHinicio;
     }
 
-    public Date getParHfinal() {
+    public String getParHfinal() {
         return parHfinal;
     }
 
-    public void setParHfinal(Date parHfinal) {
+    public void setParHfinal(String parHfinal) {
         this.parHfinal = parHfinal;
     }
 
