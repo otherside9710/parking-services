@@ -10,7 +10,6 @@ public class ParqueoDTO {
     private Date parHfinal;
     private String parEstado;
     private String parObservacion;
-    private Integer tariCodigo;
     private Integer usuaCodigo;
     private Integer vehCodigo;
     private Integer zonaCodigo;
@@ -18,14 +17,13 @@ public class ParqueoDTO {
     public ParqueoDTO(){}
 
     public ParqueoDTO(Integer parCodigo, Date parHinicio, Date parHfinal, String parEstado,
-                      String parObservacion, Integer tariCodigo, Integer usuaCodigo,
+                      String parObservacion,  Integer usuaCodigo,
                       Integer vehCodigo, Integer zonaCodigo) {
         this.parCodigo = parCodigo;
         this.parHinicio = parHinicio;
         this.parHfinal = parHfinal;
         this.parEstado = parEstado;
         this.parObservacion = parObservacion;
-        this.tariCodigo = tariCodigo;
         this.usuaCodigo = usuaCodigo;
         this.vehCodigo = vehCodigo;
         this.zonaCodigo = zonaCodigo;
@@ -38,7 +36,6 @@ public class ParqueoDTO {
                 parqueo.getParHfinal(),
                 parqueo.getParEstado(),
                 parqueo.getParObservacion(),
-                parqueo.getTariCodigo().getTariCodigo(),
                 parqueo.getUsuaCodigo().getUsuaCodigo(),
                 parqueo.getVehCodigo().getVehCodigo(),
                 parqueo.getZonaCodigo().getZonaCodigo()
@@ -53,9 +50,6 @@ public class ParqueoDTO {
         parqueo.setParEstado(this.parEstado);
         parqueo.setParObservacion(this.parObservacion);
 
-        Tarifas tarifas = new Tarifas();
-        tarifas.setTariCodigo(this.tariCodigo);
-
         Usuarios usuarios = new Usuarios();
         usuarios.setUsuaCodigo(this.usuaCodigo);
 
@@ -65,15 +59,12 @@ public class ParqueoDTO {
         Zonas zonas = new Zonas();
         zonas.setZonaCodigo(this.zonaCodigo);
 
-        parqueo.setTariCodigo(tarifas);
         parqueo.setUsuaCodigo(usuarios);
         parqueo.setVehCodigo(vehiculo);
         parqueo.setZonaCodigo(zonas);
 
         return parqueo;
     }
-
-
 
     public Integer getParCodigo() {
         return parCodigo;
@@ -99,12 +90,20 @@ public class ParqueoDTO {
         this.parHfinal = parHfinal;
     }
 
-    public Integer getTariCodigo() {
-        return tariCodigo;
+    public String getParEstado() {
+        return parEstado;
     }
 
-    public void setTariCodigo(Integer tariCodigo) {
-        this.tariCodigo = tariCodigo;
+    public void setParEstado(String parEstado) {
+        this.parEstado = parEstado;
+    }
+
+    public String getParObservacion() {
+        return parObservacion;
+    }
+
+    public void setParObservacion(String parObservacion) {
+        this.parObservacion = parObservacion;
     }
 
     public Integer getUsuaCodigo() {
@@ -129,21 +128,5 @@ public class ParqueoDTO {
 
     public void setZonaCodigo(Integer zonaCodigo) {
         this.zonaCodigo = zonaCodigo;
-    }
-
-    public String getParEstado() {
-        return parEstado;
-    }
-
-    public void setParEstado(String parEstado) {
-        this.parEstado = parEstado;
-    }
-
-    public String getParObservacion() {
-        return parObservacion;
-    }
-
-    public void setParObservacion(String parObservacion) {
-        this.parObservacion = parObservacion;
     }
 }

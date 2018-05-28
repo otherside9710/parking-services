@@ -54,17 +54,18 @@ public class UsuariosRestController implements IUsuariosRestController {
     }
 
     public ResponseEntity<?> login(@RequestBody HashMap<String, String> params){
+        List<String> result = null;
         try {
             if (params.containsKey("usuaCedula") && params.containsKey("usuaPassword")){
                 String cedula = params.get("usuaCedula");
                 String pass = params.get("usuaPassword");
-
-                usuariosRepository.findOne();
-
+                result = usuariosRepository.findUsuaByCedulaAndPass(cedula, pass);
             }
         }catch (Exception e){
             System.out.println(e.toString());
+            return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
 
