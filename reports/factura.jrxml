@@ -198,7 +198,7 @@
 				<text><![CDATA[Cedula]]></text>
 			</staticText>
 			<image>
-				<reportElement x="207" y="-10" width="124" height="50" uuid="c4418d34-77bd-460e-9ace-849b049c51e8"/>
+				<reportElement x="219" y="-10" width="124" height="50" uuid="c4418d34-77bd-460e-9ace-849b049c51e8"/>
 				<imageExpression><![CDATA["http://www.myasesor.com/parking.png"]]></imageExpression>
 			</image>
 		</band>
