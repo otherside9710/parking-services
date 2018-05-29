@@ -7,24 +7,12 @@ package com.parking.parkingservices.model.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Otherside
+ * @author MyAsesor
  */
 @Entity
 @Table(name = "facturas")
@@ -50,8 +38,10 @@ public class Facturas implements Serializable {
     private String factEstado;
     @Column(name = "fact_descripcion")
     private String factDescripcion;
-    @JoinColumn(name = "ticket_codigo", referencedColumnName = "ticket_codigo")
-    @ManyToOne
+    @JoinColumns({
+            @JoinColumn(name = "ticket_codigo", referencedColumnName = "ticket_codigo")
+            , @JoinColumn(name = "par_codigo", referencedColumnName = "par_codigo")})
+    @ManyToOne(optional = false)
     private Ticket ticketCodigo;
 
     public Facturas() {

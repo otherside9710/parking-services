@@ -12,7 +12,7 @@ import javax.persistence.Embeddable;
 
 /**
  *
- * @author Otherside
+ * @author MyAsesor
  */
 @Embeddable
 public class TicketPK implements Serializable {

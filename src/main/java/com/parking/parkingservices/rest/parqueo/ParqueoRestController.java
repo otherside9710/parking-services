@@ -77,7 +77,7 @@ public class ParqueoRestController implements IParqueoRestController {
             String nombreCliente = parqueoRepository.nombre(maxCode);
             TickectDTO tk = (TickectDTO) response.getBody();
             int ticketGenerado = tk.getTicketCodigo();
-            String msj = "Hola! Señor(a)" + nombreCliente+ "Su ticket es: " +ticketGenerado + "con esto puede pagar su factura";
+            String msj = "Hola! Señor(a) " + nombreCliente+ " Su ticket es: " +ticketGenerado + " con esto puede pagar su factura";
             HashMap<String, String> message = new HashMap<>();
             message.put("message", msj);
             return new ResponseEntity<>(message, HttpStatus.CREATED);

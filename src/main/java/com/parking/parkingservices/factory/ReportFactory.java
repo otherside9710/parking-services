@@ -22,6 +22,7 @@ import net.sf.jasperreports.engine.export.JRXlsExporter;
 public class ReportFactory {
 
     public static final String MYACPRINTBODEGAS = "myacprintbodegas";
+    public static final String FACTURA = "factura";
 
     public static int PDF_FORMAT = 1;
     public static int XLS_FORMAT = 2;
@@ -42,9 +43,6 @@ public class ReportFactory {
     public void makeFactory(HttpServletResponse response, HttpServletRequest request, HashMap<String, Object> parameters, String reportName, String rawJsonData, int export_type) throws JRException, IOException {
         if (!rawJsonData.equals("[]")) {
             complile(reportName);
-            java.util.Locale locale = new Locale( "es", "CO");
-            parameters.put( JRParameter.REPORT_LOCALE, locale );
-
             File file = new File(REPORT_FOLDER + "/" + reportName + ".jasper");
             JRDataSource dataSource;
             JasperReport report = (JasperReport) JRLoader.loadObject(file);

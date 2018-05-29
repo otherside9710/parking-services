@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="factura" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fe4a372e-07a7-4e13-9470-40198a0303ee">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="FactDataAdapter.xml"/>
+	<queryString language="JSON">
+		<![CDATA[]]>
+	</queryString>
+	<field name="parCodigo" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="parCodigo"/>
+		<fieldDescription><![CDATA[parCodigo]]></fieldDescription>
+	</field>
+	<field name="factura" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="factura"/>
+		<fieldDescription><![CDATA[factura]]></fieldDescription>
+	</field>
+	<field name="factDescripcion" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="factDescripcion"/>
+		<fieldDescription><![CDATA[factDescripcion]]></fieldDescription>
+	</field>
+	<field name="factFecha" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="factFecha"/>
+		<fieldDescription><![CDATA[factFecha]]></fieldDescription>
+	</field>
+	<field name="factEstado" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="factEstado"/>
+		<fieldDescription><![CDATA[factEstado]]></fieldDescription>
+	</field>
+	<field name="vehCodigo" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="vehCodigo"/>
+		<fieldDescription><![CDATA[vehCodigo]]></fieldDescription>
+	</field>
+	<field name="vehPlaca" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="vehPlaca"/>
+		<fieldDescription><![CDATA[vehPlaca]]></fieldDescription>
+	</field>
+	<field name="usuaNombre" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="usuaNombre"/>
+		<fieldDescription><![CDATA[usuaNombre]]></fieldDescription>
+	</field>
+	<field name="usuaApellidos" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="usuaApellidos"/>
+		<fieldDescription><![CDATA[usuaApellidos]]></fieldDescription>
+	</field>
+	<field name="horaInicio" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="horaInicio"/>
+		<fieldDescription><![CDATA[horaInicio]]></fieldDescription>
+	</field>
+	<field name="horaFinal" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="horaFinal"/>
+		<fieldDescription><![CDATA[horaFinal]]></fieldDescription>
+	</field>
+	<field name="totalHora" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="totalHora"/>
+		<fieldDescription><![CDATA[totalHora]]></fieldDescription>
+	</field>
+	<field name="valor" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="valor"/>
+		<fieldDescription><![CDATA[valor]]></fieldDescription>
+	</field>
+	<field name="UsuaCodigo" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="UsuaCodigo"/>
+		<fieldDescription><![CDATA[UsuaCodigo]]></fieldDescription>
+	</field>
+	<field name="zona" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="zona"/>
+		<fieldDescription><![CDATA[zona]]></fieldDescription>
+	</field>
+	<field name="observacion" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="observacion"/>
+		<fieldDescription><![CDATA[observacion]]></fieldDescription>
+	</field>
+	<field name="clieCodigo" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="clieCodigo"/>
+		<fieldDescription><![CDATA[clieCodigo]]></fieldDescription>
+	</field>
+	<field name="clieNombres" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="clieNombres"/>
+		<fieldDescription><![CDATA[clieNombres]]></fieldDescription>
+	</field>
+	<field name="clieApellidos" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="clieApellidos"/>
+		<fieldDescription><![CDATA[clieApellidos]]></fieldDescription>
+	</field>
+	<field name="clieCedula" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="clieCedula"/>
+		<fieldDescription><![CDATA[clieCedula]]></fieldDescription>
+	</field>
+	<field name="ticketCodigo" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="ticketCodigo"/>
+		<fieldDescription><![CDATA[ticketCodigo]]></fieldDescription>
+	</field>
+	<variable name="numberFormat" class="java.text.NumberFormat">
+		<variableExpression><![CDATA[java.text.NumberFormat.getCurrencyInstance(java.util.Locale.US)]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="134" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="40" width="572" height="20" uuid="2a37751b-11bc-4f81-ac17-f891a049b2c3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[SISTEMA - PARKING WEB]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="60" width="572" height="20" uuid="f81434ad-0db5-4e53-9b1a-d18846dc7111"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Factura de venta No: " +$F{factura}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="1" y="108" width="572" height="20" uuid="6826e150-ce36-4b9b-88ce-c4a51a87e1fb"/>
+				<graphicElement>
+					<pen lineWidth="0.6" lineStyle="Solid" lineColor="#8A8383"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="4" y="81" width="70" height="14" uuid="07c844e9-736d-41db-99e0-b99dac49ecc5"/>
+				<text><![CDATA[Fact. Codigo:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="130" y="81" width="60" height="14" uuid="2be1eeff-4d34-46bb-8e69-750a55ed4762"/>
+				<text><![CDATA[Descripcion:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="66" y="81" width="60" height="14" uuid="a86ebc79-49d9-4501-8a2f-485716882dc3"/>
+				<textFieldExpression><![CDATA[$F{factura}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="195" y="81" width="152" height="14" uuid="052b5201-6328-4e20-8eeb-90ff28770741"/>
+				<textFieldExpression><![CDATA[$F{factDescripcion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="409" y="81" width="80" height="14" uuid="e542dc8b-7a89-4c35-ba66-7cd9f90270c0"/>
+				<textFieldExpression><![CDATA[$F{factFecha}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="349" y="81" width="59" height="14" uuid="071f15d1-d5dc-4dc6-9462-de05b6e848d5"/>
+				<text><![CDATA[Fact. Fecha:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="479" y="81" width="70" height="14" uuid="2ebe7c29-e9c5-4c61-81c1-94d5e77a327b"/>
+				<text><![CDATA[Fact. Estado:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="541" y="81" width="32" height="14" uuid="c7ab60de-6651-4712-9bd9-1cccdbf9fbef"/>
+				<textFieldExpression><![CDATA[$F{factEstado}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="40" y="108" width="49" height="19" uuid="71b8b732-e5e9-46bc-be41-e94f76344de8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Parqueo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="126" y="108" width="46" height="19" uuid="d79bb5ea-3834-4efa-bff7-8bb1d4f357f3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Vehiculo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="172" y="108" width="60" height="19" uuid="1b332d76-af01-4d7b-aead-113651712708"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Placa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="232" y="108" width="40" height="19" uuid="6669d956-376d-4f1c-8d20-c4db3ef658e9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Cliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="271" y="108" width="138" height="19" uuid="12cd7ce4-dbdd-477a-a69f-eb546bce09c2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Nombres Y Apellidos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="89" y="108" width="36" height="19" uuid="1317f1bb-9919-4fce-bcbe-29cc97e2be32"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Zona]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="108" width="39" height="19" uuid="d327e591-636f-4732-8d72-50dd4a468d3a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Ticket]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="471" y="108" width="50" height="19" uuid="40d3d848-f40e-434c-93f6-4e7bb519d699"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Hora Inicio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="521" y="108" width="50" height="19" uuid="34e5a1b9-04f3-4e85-8721-220b6e7121ac"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Hora Final]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="409" y="108" width="62" height="19" uuid="b8bb921e-5d46-466e-ac47-a738292d3ea9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Cedula]]></text>
+			</staticText>
+			<image>
+				<reportElement x="207" y="-10" width="124" height="50" uuid="c4418d34-77bd-460e-9ace-849b049c51e8"/>
+				<imageExpression><![CDATA["http://www.myasesor.com/parking.png"]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="39" height="14" uuid="7506ba8c-a368-4386-9f26-92dd2d880d65"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{ticketCodigo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="39" y="0" width="49" height="14" uuid="e7530ee7-4f7d-4c11-8e03-296ba2ad7010"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{parCodigo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="88" y="0" width="36" height="14" uuid="d9e7e6a7-804f-473a-8219-6d7b3fba52ce"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{zona}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="125" y="0" width="46" height="14" uuid="fb888b11-06db-4699-9766-f4a4399ecea0"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{vehCodigo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="171" y="0" width="60" height="14" uuid="01631635-8e20-4d6f-b939-daf19e91e9ae"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{vehPlaca}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="231" y="0" width="40" height="14" uuid="29ba9620-0325-48f1-8686-9d3c44705a39"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{clieCodigo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="270" y="0" width="138" height="14" uuid="1c0c6f17-bbbd-4dff-9b0e-ed4fb11b6ba2"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{clieNombres} + " " + $F{clieApellidos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="470" y="0" width="50" height="14" uuid="d73ec8eb-1bb3-45fc-8343-a5a89ed8bbcc"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{horaInicio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="520" y="0" width="50" height="14" uuid="f4965c1f-5019-4be1-8789-8fe778d6d5cd"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{horaFinal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="408" y="0" width="62" height="14" uuid="a3e6d5eb-c5f7-416e-9244-15eef8e5007b"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{clieCedula}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="19">
+			<textField>
+				<reportElement x="0" y="5" width="572" height="14" uuid="a2b7cd92-f96d-4db5-b75c-0dbab0dfb0a8"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Factura Generada por: " +$F{usuaNombre}  + " " +$F{usuaApellidos} + " Al Cliente: " + $F{clieNombres} + " " + $F{clieApellidos}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="89" splitType="Stretch">
+			<rectangle>
+				<reportElement x="420" y="20" width="113" height="20" uuid="f45f05f8-a41a-4628-9f8e-9ad437955c45"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="336" y="20" width="71" height="20" uuid="8bbee79b-2113-4413-b286-c6166fe64bd5"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Horas:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="40" y="20" width="170" height="50" uuid="191a4568-031b-41b3-ac59-773b6b276ec1"/>
+				<textElement>
+					<font size="20"/>
+				</textElement>
+				<text><![CDATA[TOTALES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="336" y="40" width="71" height="20" uuid="e9e29238-a749-47b3-a3de-dfb917c60714"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor a pagar:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="420" y="40" width="113" height="20" uuid="e6f0e376-93f6-4d3e-b23c-2b33de5f86ca"/>
+			</rectangle>
+			<textField>
+				<reportElement x="430" y="20" width="103" height="19" uuid="5c25fce7-cbbb-4e61-a3a3-8469012520b6"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{totalHora}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="430" y="40" width="102" height="20" uuid="d4e75ca2-02c6-4503-996f-d9bdc4079672"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{numberFormat}.format(Double.valueOf($F{valor}))]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>
