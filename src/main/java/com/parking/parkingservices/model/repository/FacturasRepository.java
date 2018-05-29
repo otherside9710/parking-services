@@ -12,6 +12,9 @@ public interface FacturasRepository extends PagingAndSortingRepository<Facturas,
 
     Facturas save(Facturas facturas);
 
+    @Query(value = "select max(f.factCodigo) from Facturas f")
+    String maxFactura();
+
     @Query(value = "SELECT p.par_codigo as parCodigo,\n" +
             "v.veh_codigo as vehCodigo,\n" +
             "v.veh_placa as vehPlaca,\n" +

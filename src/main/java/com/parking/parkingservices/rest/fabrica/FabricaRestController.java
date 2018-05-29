@@ -4,13 +4,15 @@ import com.parking.parkingservices.model.dto.ClientesDTO;
 import com.parking.parkingservices.model.dto.ClientesVsVehiculos;
 
 import com.parking.parkingservices.model.dto.VehiculosDTO;
-import com.parking.parkingservices.model.repository.ClientesRepository;
+import com.parking.parkingservices.model.repository.*;
 import com.parking.parkingservices.rest.clientes.ClientesRestController;
 import com.parking.parkingservices.rest.vehiculo.VehiculoRestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
 
 
 @CrossOrigin()
@@ -27,6 +29,18 @@ public class FabricaRestController implements IFabricaRestController {
     @Autowired
     ClientesRepository clientesRepository;
 
+    @Autowired
+    VehiculoRepository vehiculoRepository;
+
+    @Autowired
+    ZonasRepository zonasRepository;
+
+    @Autowired
+    ParqueoRepository parqueoRepository;
+
+    @Autowired
+    UsuariosRepository usuariosRepository;
+
     public ResponseEntity<?> transaction(@RequestBody ClientesVsVehiculos cv) {
         try {
 
@@ -34,7 +48,7 @@ public class FabricaRestController implements IFabricaRestController {
             Integer maxCode = Integer.parseInt(code);
 
             ClientesDTO clientesDTO = new ClientesDTO();
-            clientesDTO.setClieCodigo(maxCode+1);
+            clientesDTO.setClieCodigo(maxCode + 1);
             clientesDTO.setClieNombres(cv.getClieNombres());
             clientesDTO.setClieApellidos(cv.getClieApellidos());
             clientesDTO.setClieCedula(cv.getClieCedula());
@@ -50,7 +64,7 @@ public class FabricaRestController implements IFabricaRestController {
             vehiculosDTO.setVehEstado(cv.getVehEstado());
             vehiculosDTO.setZonaCodigo(cv.getZonaCodigo());
             vehiculosDTO.setTpvCodigo(cv.getTpvCodigo());
-            vehiculosDTO.setClieCodigo(maxCode+1);
+            vehiculosDTO.setClieCodigo(maxCode + 1);
 
             clientesRestController.save(clientesDTO);
             vehiculoRestController.save(vehiculosDTO);
@@ -60,7 +74,29 @@ public class FabricaRestController implements IFabricaRestController {
             return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
-        return new ResponseEntity<>(cv,HttpStatus.OK);
+        return new ResponseEntity<>(cv, HttpStatus.OK);
+    }
+
+    public ResponseEntity<?> getMax() {
+        HashMap<String, String> params = new HashMap<>();
+        try {
+            String clientes = clientesRepository.maxCode();
+            String vehiculo = vehiculoRepository.maxCode();
+            String zonas = zonasRepository.maxZonas();
+            String parqueo = parqueoRepository.maxCode();
+            String usuarios = usuariosRepository.maxCode();
+
+            params.put("clientes", clientes);
+            params.put("vehiculo", vehiculo);
+            params.put("zonas", zonas);
+            params.put("parqueo", parqueo);
+            params.put("usuarios", usuarios);
+
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>(params, HttpStatus.OK);
     }
 
 }

@@ -9,4 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public interface IFabricaRestController {
     @RequestMapping(value = "/transaction", produces = { "application/json" }, method = RequestMethod.POST)
     ResponseEntity<?> transaction(@RequestBody ClientesVsVehiculos cv);
+
+    @RequestMapping(value = "/getMax", produces = { "application/json" }, method = RequestMethod.GET)
+    ResponseEntity<?> getMax();
 }
