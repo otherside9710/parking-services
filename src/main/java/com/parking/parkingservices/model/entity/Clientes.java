@@ -64,8 +64,6 @@ public class Clientes implements Serializable {
     @Column(name = "clie_estado")
     private String clieEstado;
     @OneToMany(mappedBy = "clieCodigo")
-    private List<Facturas> facturasList;
-    @OneToMany(mappedBy = "clieCodigo")
     private List<Vehiculo> vehiculoList;
 
     public Clientes() {
@@ -150,15 +148,6 @@ public class Clientes implements Serializable {
 
     public void setClieEstado(String clieEstado) {
         this.clieEstado = clieEstado;
-    }
-
-    @XmlTransient
-    public List<Facturas> getFacturasList() {
-        return facturasList;
-    }
-
-    public void setFacturasList(List<Facturas> facturasList) {
-        this.facturasList = facturasList;
     }
 
     @XmlTransient

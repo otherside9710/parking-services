@@ -62,8 +62,6 @@ public class Usuarios implements Serializable {
     private String usuaEstado;
     @OneToMany(mappedBy = "usuaCodigo")
     private List<Parqueo> parqueoList;
-    @OneToMany(mappedBy = "usuaCodigo")
-    private List<Facturas> facturasList;
     @JoinColumn(name = "rol_codigo", referencedColumnName = "rol_codigo")
     @ManyToOne(optional = false)
     private Roles rolCodigo;
@@ -144,15 +142,6 @@ public class Usuarios implements Serializable {
 
     public void setParqueoList(List<Parqueo> parqueoList) {
         this.parqueoList = parqueoList;
-    }
-
-    @XmlTransient
-    public List<Facturas> getFacturasList() {
-        return facturasList;
-    }
-
-    public void setFacturasList(List<Facturas> facturasList) {
-        this.facturasList = facturasList;
     }
 
     public Roles getRolCodigo() {

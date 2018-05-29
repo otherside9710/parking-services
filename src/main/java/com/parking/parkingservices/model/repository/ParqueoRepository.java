@@ -14,9 +14,10 @@ public interface ParqueoRepository extends PagingAndSortingRepository<Parqueo, S
     @Query(value = "SELECT max (p.parCodigo) from Parqueo p")
     String maxCode();
 
-    @Query(value = "select concat(c.clie_nombres,' ', c.clie_apellidos) as name from parqueo p\n" +
-            "LEFT JOIN clientes c on p.usua_codigo = c.clie_codigo \n" +
-            "LEFT JOIN vehiculo v on p.veh_codigo = v .veh_codigo\n" +
-            "where p.par_codigo = ?1\n", nativeQuery = true)
+    @Query(value = "SELECT concat(c.clie_nombres, ' ', c.clie_apellidos) as name\n" +
+            "FROM parqueo p\n" +
+            "LEFT JOIN vehiculo v ON p.veh_codigo = v .veh_codigo\n" +
+            "LEFT JOIN clientes c ON v.clie_codigo = c.clie_codigo \n" +
+            "where p.par_codigo = ?1", nativeQuery = true)
     String nombre(int parCodigo);
 }

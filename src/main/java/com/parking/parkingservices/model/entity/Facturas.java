@@ -6,6 +6,7 @@
 package com.parking.parkingservices.model.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,6 +18,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -29,6 +32,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Facturas.findAll", query = "SELECT f FROM Facturas f")
     , @NamedQuery(name = "Facturas.findByFactCodigo", query = "SELECT f FROM Facturas f WHERE f.factCodigo = :factCodigo")
+    , @NamedQuery(name = "Facturas.findByFactFecha", query = "SELECT f FROM Facturas f WHERE f.factFecha = :factFecha")
     , @NamedQuery(name = "Facturas.findByFactEstado", query = "SELECT f FROM Facturas f WHERE f.factEstado = :factEstado")
     , @NamedQuery(name = "Facturas.findByFactDescripcion", query = "SELECT f FROM Facturas f WHERE f.factDescripcion = :factDescripcion")})
 public class Facturas implements Serializable {
@@ -39,16 +43,16 @@ public class Facturas implements Serializable {
     @Basic(optional = false)
     @Column(name = "fact_codigo")
     private Integer factCodigo;
+    @Column(name = "fact_fecha")
+    @Temporal(TemporalType.DATE)
+    private Date factFecha;
     @Column(name = "fact_estado")
     private String factEstado;
     @Column(name = "fact_descripcion")
     private String factDescripcion;
-    @JoinColumn(name = "usua_codigo", referencedColumnName = "usua_codigo")
+    @JoinColumn(name = "ticket_codigo", referencedColumnName = "ticket_codigo")
     @ManyToOne
-    private Usuarios usuaCodigo;
-    @JoinColumn(name = "clie_codigo", referencedColumnName = "clie_codigo")
-    @ManyToOne
-    private Clientes clieCodigo;
+    private Ticket ticketCodigo;
 
     public Facturas() {
     }
@@ -63,6 +67,14 @@ public class Facturas implements Serializable {
 
     public void setFactCodigo(Integer factCodigo) {
         this.factCodigo = factCodigo;
+    }
+
+    public Date getFactFecha() {
+        return factFecha;
+    }
+
+    public void setFactFecha(Date factFecha) {
+        this.factFecha = factFecha;
     }
 
     public String getFactEstado() {
@@ -81,20 +93,12 @@ public class Facturas implements Serializable {
         this.factDescripcion = factDescripcion;
     }
 
-    public Usuarios getUsuaCodigo() {
-        return usuaCodigo;
+    public Ticket getTicketCodigo() {
+        return ticketCodigo;
     }
 
-    public void setUsuaCodigo(Usuarios usuaCodigo) {
-        this.usuaCodigo = usuaCodigo;
-    }
-
-    public Clientes getClieCodigo() {
-        return clieCodigo;
-    }
-
-    public void setClieCodigo(Clientes clieCodigo) {
-        this.clieCodigo = clieCodigo;
+    public void setTicketCodigo(Ticket ticketCodigo) {
+        this.ticketCodigo = ticketCodigo;
     }
 
     @Override

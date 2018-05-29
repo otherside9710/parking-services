@@ -7,6 +7,7 @@ package com.parking.parkingservices.model.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
@@ -15,10 +16,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -47,6 +50,8 @@ public class Ticket implements Serializable {
     @JoinColumn(name = "par_codigo", referencedColumnName = "par_codigo", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Parqueo parqueo;
+    @OneToMany(mappedBy = "ticketCodigo")
+    private List<Facturas> facturasList;
 
     public Ticket() {
     }
@@ -94,6 +99,15 @@ public class Ticket implements Serializable {
 
     public void setParqueo(Parqueo parqueo) {
         this.parqueo = parqueo;
+    }
+
+    @XmlTransient
+    public List<Facturas> getFacturasList() {
+        return facturasList;
+    }
+
+    public void setFacturasList(List<Facturas> facturasList) {
+        this.facturasList = facturasList;
     }
 
     @Override
