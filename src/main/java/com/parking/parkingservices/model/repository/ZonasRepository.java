@@ -13,4 +13,7 @@ public interface ZonasRepository extends PagingAndSortingRepository<Zonas, Strin
 
     @Query(value = "select max(z.zonaCodigo) from Zonas z")
     String maxZonas();
+
+    @Query(value = "select count(z.zonaCodigo) from Zonas z")
+    String maxCount();
 }

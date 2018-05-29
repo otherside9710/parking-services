@@ -15,4 +15,7 @@ public interface TicketRepository extends PagingAndSortingRepository<Ticket, Tic
 
     @Query(value = "SELECT max (t.ticketPK.ticketCodigo) from Ticket t")
     String maxCode();
+
+    @Query(value = "SELECT count(t.ticketPK.ticketCodigo) from Ticket t")
+    String maxCount();
 }

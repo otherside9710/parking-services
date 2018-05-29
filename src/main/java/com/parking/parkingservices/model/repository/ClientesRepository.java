@@ -13,4 +13,9 @@ public interface ClientesRepository extends PagingAndSortingRepository<Clientes,
 
     @Query(value = "SELECT max(c.clie_codigo) from clientes c", nativeQuery = true)
     String maxCode();
+
+    @Query(value = "SELECT count(c.clie_codigo) from clientes c", nativeQuery = true)
+    String maxCount();
+
+
 }

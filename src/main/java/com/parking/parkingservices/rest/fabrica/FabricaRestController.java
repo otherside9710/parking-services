@@ -41,6 +41,9 @@ public class FabricaRestController implements IFabricaRestController {
     @Autowired
     UsuariosRepository usuariosRepository;
 
+    @Autowired
+    FacturasRepository facturasRepository;
+
     public ResponseEntity<?> transaction(@RequestBody ClientesVsVehiculos cv) {
         try {
 
@@ -80,17 +83,19 @@ public class FabricaRestController implements IFabricaRestController {
     public ResponseEntity<?> getMax() {
         HashMap<String, String> params = new HashMap<>();
         try {
-            String clientes = clientesRepository.maxCode();
-            String vehiculo = vehiculoRepository.maxCode();
-            String zonas = zonasRepository.maxZonas();
-            String parqueo = parqueoRepository.maxCode();
-            String usuarios = usuariosRepository.maxCode();
+            String clientes = clientesRepository.maxCount();
+            String vehiculo = vehiculoRepository.maxCount();
+            String zonas = zonasRepository.maxCount();
+            String parqueo = parqueoRepository.maxCount();
+            String usuarios = usuariosRepository.maxCount();
+            String facturas = facturasRepository.maxCount();
 
             params.put("clientes", clientes);
             params.put("vehiculo", vehiculo);
             params.put("zonas", zonas);
             params.put("parqueo", parqueo);
             params.put("usuarios", usuarios);
+            params.put("facturas", facturas);
 
         } catch (Exception e) {
             System.out.println(e.toString());

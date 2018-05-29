@@ -12,5 +12,8 @@ public interface VehiculoRepository extends PagingAndSortingRepository<Vehiculo,
     @Query(value = "SELECT max (v.vehCodigo) from Vehiculo v")
     String maxCode();
 
+    @Query(value = "SELECT count(v.vehCodigo) from Vehiculo v")
+    String maxCount();
+
     Vehiculo save(Vehiculo vehiculo);
 }

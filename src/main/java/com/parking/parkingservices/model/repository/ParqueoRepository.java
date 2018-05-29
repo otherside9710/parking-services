@@ -20,4 +20,7 @@ public interface ParqueoRepository extends PagingAndSortingRepository<Parqueo, S
             "LEFT JOIN clientes c ON v.clie_codigo = c.clie_codigo \n" +
             "where p.par_codigo = ?1", nativeQuery = true)
     String nombre(int parCodigo);
+
+    @Query(value = "SELECT count(p.parCodigo) from Parqueo p")
+    String maxCount();
 }
